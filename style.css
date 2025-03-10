@@ -1,0 +1,146 @@
+/* Configuración global */
+:root {
+    --dark-gray: #3a3a3a;
+    --medium-gray: #4a4a4a;
+    --brown: #9b8974;
+    --light-brown: #c2b583;
+    --beige: #efe2a1;
+    --off-white: #f8f8f8;
+    --font-primary: 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    background-color: var(--off-white);
+    color: var(--dark-gray);
+}
+
+/* Estilos de la cabecera */
+.header {
+    background-color: var(--dark-gray);
+    padding: 15px;
+    text-align: center;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.nav-list li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Estilos del Hero */
+.hero {
+    background: var(--medium-gray);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+/* Galería */
+.gallery {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.gallery-menu {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.gallery-menu button {
+    background: var(--light-brown);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.gallery-menu .active {
+    background: var(--beige);
+}
+
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.gallery-grid img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Pie de página */
+.footer {
+    background: var(--medium-gray);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Sección de Categorías */
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.category {
+    background: #a69882; /* Color base */
+    border: none;
+    padding: 8px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.category.active {
+    background: #c5bb8b; /* Color resaltado */
+}
+
+.category:hover {
+    background: #dcd39f;
+}
+
+/* Galería de Imágenes */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-grid img:hover {
+    transform: scale(1.05);
+}
