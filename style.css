@@ -1,146 +1,251 @@
-/* Configuración global */
+/* Definir paleta de colores como variables */
 :root {
-    --dark-gray: #3a3a3a;
-    --medium-gray: #4a4a4a;
-    --brown: #9b8974;
-    --light-brown: #c2b583;
-    --beige: #efe2a1;
-    --off-white: #f8f8f8;
-    --font-primary: 'Inter', sans-serif;
+    --color-oscuro: #36393B;
+    --color-medio-oscuro: #45484B;
+    --color-medio: #9E8D77;
+    --color-claro: #C5BC8E;
+    --color-muy-claro: #EEE6AB;
+    --color-blanco: #F8F9F9;
 }
 
+/* Estilos generales */
 body {
-    font-family: var(--font-primary);
     margin: 0;
-    padding: 0;
-    background-color: var(--off-white);
-    color: var(--dark-gray);
+    font-family: Arial, sans-serif;
+    background-color: var(--color-blanco);
 }
 
-/* Estilos de la cabecera */
-.header {
-    background-color: var(--dark-gray);
-    padding: 15px;
-    text-align: center;
-}
-
-.nav-list {
-    list-style: none;
-    padding: 0;
+/* Banner */
+.banner {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    background-image: url('img/banner.jpg'); /* Imagen del banner */
+    background-size: cover;
+    background-position: center;
     display: flex;
+    align-items: center;
     justify-content: center;
+    text-align: center;
+    color: var(--color-blanco);
+    z-index: 5; /* Se mantiene detrás del menú */
+}
+
+
+
+.banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 4; /* Menor que el contenido del banner */
+    pointer-events: none; /* Esto evita que bloquee los clics */
+}
+
+/* Asegurar que el contenido del banner esté por encima */
+.banner-content {
+    position: relative;
+    z-index: 5; /* Mayor que el ::before */
+}
+
+.banner h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.banner p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Botón de agendar cita */
+.btn-agendar {
+    background-color: var(--color-muy-claro);
+    color: var(--color-oscuro);
+    padding: 12px 25px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-agendar:hover {
+    background-color: var(--color-claro);
+    color: var(--color-oscuro);
+}
+
+.categoria {
+    background-color: var(--color-medio);
+    color: var(--color-blanco);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.categoria.active {
+    background-color: var(--color-muy-claro);
+    color: var(--color-oscuro);
+}
+
+.categoria:hover {
+    background-color: var(--color-claro);
+    color: var(--color-oscuro);
+}
+
+/* Carrusel */
+.carrusel {
+    width: 90%;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+}
+
+.carrusel-track {
+    display: flex;
+    gap: 15px;
+    animation: moverCarrusel 20s linear infinite;
+}
+
+.carrusel-item {
+    min-width: 200px;
+    height: 250px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.carrusel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.carrusel-item a:hover img {
+    transform: scale(1.05);
+}
+
+/* Animación del carrusel */
+@keyframes moverCarrusel {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Sección de la galería */
+.galeria {
+    text-align: center;
+    margin-top: 30px;
+}
+
+
+/* Barra de navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-oscuro);
+    padding: 15px 30px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Links de navegación */
+.nav-links {
+    list-style: none;
+    display: flex;
     gap: 20px;
 }
 
-.nav-list li a {
-    color: white;
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
     text-decoration: none;
-    font-weight: 700;
+    color: var(--color-muy-claro);
+    padding: 10px 15px;
+    transition: all 0.3s ease;
 }
 
-/* Estilos del Hero */
-.hero {
-    background: var(--medium-gray);
-    color: white;
-    text-align: center;
-    padding: 60px 20px;
+/* Hover en los enlaces */
+.nav-links a:hover {
+    background-color: var(--color-muy-claro);
+    color: var(--color-oscuro);
+    border-radius: 5px;
 }
 
-/* Galería */
-.gallery {
-    padding: 40px 20px;
-    text-align: center;
-}
-
-.gallery-menu {
+/* Menú de selección */
+.menu-galeria {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
 }
 
-.gallery-menu button {
-    background: var(--light-brown);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.gallery-menu .active {
-    background: var(--beige);
-}
-
-.gallery-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-}
-
-.gallery-grid img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Pie de página */
-.footer {
-    background: var(--medium-gray);
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-/* Sección de Categorías */
-.categories {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+/* Estilo del menú desplegable */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-oscuro);
+    list-style: none;
     padding: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 15; /* Mayor que el banner, pero sin afectar la navbar */
 }
 
-.category {
-    background: #a69882; /* Color base */
-    border: none;
-    padding: 8px 15px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    color: #fff;
-    transition: 0.3s;
+.dropdown-menu li {
+    padding: 8px 20px;
 }
 
-.category.active {
-    background: #c5bb8b; /* Color resaltado */
-}
-
-.category:hover {
-    background: #dcd39f;
-}
-
-/* Galería de Imágenes */
-.image-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    padding: 20px;
-    justify-content: center;
-}
-
-.image-grid img {
+.dropdown-menu a {
+    color: var(--color-muy-claro);
+    display: block;
     width: 100%;
-    height: auto;
-    border-radius: 15px;
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out;
 }
 
-.image-grid img:hover {
-    transform: scale(1.05);
+.dropdown-menu a:hover {
+    background-color: var(--color-muy-claro);
+    color: var(--color-oscuro);
+}
+
+/* Mostrar menú cuando el cursor está sobre "Servicios" */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Perfil de usuario */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-muy-claro);
+}
+
+.user-icon {
+    background-color: var(--color-muy-claro);
+    color: var(--color-oscuro);
+    padding: 5px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
 }

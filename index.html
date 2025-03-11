@@ -3,82 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shine Beauty Studio</title>
+    <title>Shine Beauty</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle" />
 </head>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#" class="active">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#">Servicios ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Cortes</a></li>
+                    <li><a href="#">Peinado</a></li>
+                    <li><a href="#">Maquillaje</a></li>
+                    <li><a href="#">Manicure</a></li>
+                    <li><a href="#">Pedicure</a></li>
+                    <li><a href="#">Skin Care</a></li>
+                    <li><a href="#">Retoque</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Acerca de</a></li>
+            <li><a href="#">Agendar</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">Blog</a></li>
+        </ul>
+        <div class="user-profile">
+            <span>ELLA / ÉL</span>
+            <div class="user-icon"><span class="material-symbols-outlined">account_circle</span></div>
+        </div>
+    </nav>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <ul class="nav-list">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Servicios</a></li>
-                <li><a href="#">Acerca de</a></li>
-                <li><a href="#">Agenda</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="#">Blog</a></li>
-            </ul>
-        </nav>
+    <header class="banner">
+        <div class="banner-content">
+            <h1>Shine Beauty</h1>
+            <p>Realza tu belleza con nuestros servicios profesionales</p>
+            <a href="#" class="btn-agendar">Agendar Cita</a>
+        </div>
     </header>
-    <section class="hero">
-        <div class="hero-container">
-            <h1>Shine Beauty Studio</h1>
+
+    <section class="galeria">
+        <div class="contenedor-imagenes" id="contenedor-imagenes">
+            <!-- Imágenes de ejemplo -->
+            <a href="#"><img src="img/cabello/peinado1.jpg" alt="Peinado 1"></a>
+            <a href="#"><img src="img/cabello/peinado2.jpg" alt="Peinado 2"></a>
+            <a href="#"><img src="img/cabello/peinado3.jpg" alt="Peinado 3"></a>
+            <a href="#"><img src="img/cabello/peinado4.jpg" alt="Peinado 4"></a>
+            <a href="#"><img src="img/cabello/peinado5.jpg" alt="Peinado 5"></a>
+            <a href="#"><img src="img/cabello/peinado6.jpg" alt="Peinado 6"></a>
+            <a href="#"><img src="img/cabello/peinado7.jpg" alt="Peinado 7"></a>
+            <a href="#"><img src="img/cabello/peinado8.jpg" alt="Peinado 8"></a>
         </div>
     </section>
-    <section class="gallery">
-        <div class="categories">
-            <button class="category">Manicure</button>
-            <button class="category">Pedicure</button>
-            <button class="category active">Cabello</button>
-            <button class="category">Maquillaje</button>
-            <button class="category">Skin Care</button>
-        </div>
-        <div class="image-grid">
-            <img src="img1.jpg" alt="Estilo 1">
-            <img src="img2.jpg" alt="Estilo 2">
-            <img src="img3.jpg" alt="Estilo 3">
-            <img src="img4.jpg" alt="Estilo 4">
-            <img src="img5.jpg" alt="Estilo 5">
-            <img src="img6.jpg" alt="Estilo 6">
-            <img src="img7.jpg" alt="Estilo 7">
-            <img src="img8.jpg" alt="Estilo 8">
-        </div>
-    </section>
-    
-    <section class="productos">
-        <div class="productos-container">
-            <h2>Nuestros productos Estrella</h2>
-            <div class="productos-grid">
-                <!-- Productos destacados -->
-            </div>
-        </div>
-    </section>
-    <section class="testimonios">
-        <div class="testimonios-container">
-            <h2>Testimonios</h2>
-            <div class="testimonios-grid">
-                <!-- Testimonios de clientes -->
-            </div>
-        </div>
-    </section>
-    <section class="horarios">
-        <div class="horarios-container">
-            <h2>HORARIOS DE TRABAJO</h2>
-            <p>Lunes - Viernes: 8:00 - 20:00</p>
-            <p>Sábado: 8:00 - 17:00</p>
-            <p>Domingo: Cerrado</p>
-        </div>
-    </section>
-    <section class="ubicacion">
-        <div class="ubicacion-container">
-            <h2>Ubicación</h2>
-            <div class="mapa">
-                <!-- Mapa embebido -->
-            </div>
-        </div>
-    </section>
-    <footer class="footer">
-        <p>&copy; 2025 Shine Beauty Studio</p>
-    </footer>
 </body>
 </html>
