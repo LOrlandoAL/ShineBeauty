@@ -80,6 +80,19 @@ body {
     color: var(--color-oscuro);
 }
 
+.contenedor-imagenes{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap: 2rem;
+    padding: .5rem;
+}
+
+img{
+    width: 100%;
+    height: 75%;
+    object-fit: cover;
+    border-radius: 2rem;
+}
 .categoria {
     background-color: var(--color-medio);
     color: var(--color-blanco);
@@ -101,48 +114,6 @@ body {
     color: var(--color-oscuro);
 }
 
-/* Carrusel */
-.carrusel {
-    width: 90%;
-    overflow: hidden;
-    position: relative;
-    margin: 0 auto;
-}
-
-.carrusel-track {
-    display: flex;
-    gap: 15px;
-    animation: moverCarrusel 20s linear infinite;
-}
-
-.carrusel-item {
-    min-width: 200px;
-    height: 250px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.carrusel-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-}
-
-.carrusel-item a:hover img {
-    transform: scale(1.05);
-}
-
-/* Animación del carrusel */
-@keyframes moverCarrusel {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-100%);
-    }
-}
 
 /* Sección de la galería */
 .galeria {
@@ -248,4 +219,202 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 18px;
+}
+
+
+/* Sección de productos estrella */
+.productos-estrella {
+    text-align: center;
+    background-color: var(--color-medio);
+    padding: 40px 20px;
+    margin-top: 40px;
+    border-radius: 10px;
+}
+
+.productos-estrella h2 {
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--color-blanco);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.productos-estrella h2 span {
+    font-weight: bold;
+    color: var(--color-muy-claro);
+}
+
+/* Contenedor de productos */
+.productos-contenedor {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Tarjeta de producto */
+.producto {
+    background-color: var(--color-claro);
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.producto:hover {
+    transform: scale(1.05);
+}
+
+.producto img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.producto h3 {
+    font-size: 1.2rem;
+    color: var(--color-muy-claro);
+    margin-top: 10px;
+}
+
+.producto p {
+    color: var(--color-blanco);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* Sección de testimonios */
+.testimonios {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--color-blanco);
+}
+
+.testimonios h2 {
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--color-medio);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.testimonios-contenedor {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.testimonio {
+    text-align: center;
+    max-width: 250px;
+}
+
+.testimonio img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.testimonio h3 {
+    font-size: 1.2rem;
+    color: var(--color-oscuro);
+    margin-bottom: 5px;
+}
+
+.testimonio p {
+    font-size: 1rem;
+    color: var(--color-medio-oscuro);
+    font-weight: bold;
+}
+
+/* Sección de horarios */
+.horarios {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: var(--color-blanco);
+}
+
+.horarios h2 {
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--color-medio);
+    margin-bottom: 20px;
+}
+
+.horarios h2 span {
+    font-weight: bold;
+    color: var(--color-oscuro);
+}
+
+.horarios table {
+    width: 50%;
+    margin: auto;
+    border-collapse: collapse;
+    font-size: 1.2rem;
+}
+
+.horarios table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--color-medio);
+    text-align: right;
+}
+
+.horarios table tr td:first-child {
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Sección de Mapa */
+.ubicacion {
+    width: 100%;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--color-oscuro);
+    color: var(--color-blanco);
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.social-icons {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a img {
+    width: 24px;
+    height: 24px;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+}
+
+.footer p {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+.footer strong {
+    color: var(--color-muy-claro);
 }
