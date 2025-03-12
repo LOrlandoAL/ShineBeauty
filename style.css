@@ -222,70 +222,71 @@ img{
 }
 
 
-/* Sección de productos estrella */
+/* Sección de productos estrella más grande */
 .productos-estrella {
     text-align: center;
     background-color: var(--color-medio);
-    padding: 40px 20px;
-    margin-top: 40px;
-    border-radius: 10px;
+    padding: 60px 20px; /* Aumentamos el padding */
+    margin-top: 50px;
+    border-radius: 20px;
 }
 
+/* Título más grande */
 .productos-estrella h2 {
-    font-size: 2rem;
+    font-size: 2.5rem; /* Tamaño aumentado */
     font-style: italic;
     color: var(--color-blanco);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     position: relative;
     display: inline-block;
 }
 
-.productos-estrella h2 span {
-    font-weight: bold;
-    color: var(--color-muy-claro);
-}
-
-/* Contenedor de productos */
+/* Contenedor de productos con más espacio */
 .productos-contenedor {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 50px; /* Aumentamos la separación entre productos */
     flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
 }
 
-/* Tarjeta de producto */
+/* Tarjeta de producto más grande */
 .producto {
     background-color: var(--color-claro);
-    padding: 15px;
+    padding: 20px;
     border-radius: 15px;
     text-align: center;
-    width: 250px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 320px; /* Hacemos más anchas las tarjetas */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
 }
 
 .producto:hover {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
+/* Imágenes más grandes */
 .producto img {
     width: 100%;
-    height: 220px;
+    height: 280px; /* Aumentamos altura */
     object-fit: cover;
     border-radius: 10px;
 }
 
+/* Texto más grande */
 .producto h3 {
-    font-size: 1.2rem;
-    color: var(--color-muy-claro);
-    margin-top: 10px;
+    font-size: 1.5rem; /* Aumentamos tamaño */
+    color: var(--color-oscuro);
+    margin-top: 15px;
 }
 
 .producto p {
-    color: var(--color-blanco);
-    font-size: 1rem;
+    font-size: 1.2rem; /* Hacemos el precio más visible */
     font-weight: bold;
+    color: var(--color-medio-oscuro);
 }
+
 
 /* Sección de testimonios */
 .testimonios {
@@ -340,12 +341,17 @@ img{
     text-align: center;
     padding: 40px 20px;
     background-color: var(--color-blanco);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: end;
+    align-items: center;
+    gap: 20px;
 }
 
 .horarios h2 {
-    font-size: 1.8rem;
+    font-size: 2.8rem;
     font-style: italic;
-    color: var(--color-medio);
+    color: var(--color-oscuro);
     margin-bottom: 20px;
 }
 
@@ -354,23 +360,38 @@ img{
     color: var(--color-oscuro);
 }
 
-.horarios table {
-    width: 50%;
+/* Contenedor de horarios */
+.horarios-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 75%;
     margin: auto;
-    border-collapse: collapse;
+    width: 100%;
+}
+
+/* Fila de cada horario */
+.horarios-contenedor div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 0;
     font-size: 1.2rem;
-}
-
-.horarios table td {
-    padding: 10px;
     border-bottom: 1px solid var(--color-medio);
-    text-align: right;
 }
 
-.horarios table tr td:first-child {
+/* Estilo para los días y horas */
+.dia {
     text-align: left;
     font-weight: bold;
+    width: 50%;
 }
+
+.hora {
+    text-align: right;
+    width: 50%;
+}
+
 
 /* Sección de Mapa */
 .ubicacion {
@@ -396,6 +417,7 @@ img{
 
 .social-icons a {
     display: inline-block;
+    color: var(--color-blanco);
     margin: 0 10px;
     transition: transform 0.3s ease;
 }
@@ -417,4 +439,111 @@ img{
 
 .footer strong {
     color: var(--color-muy-claro);
+}
+
+
+/* ======= RESPONSIVE DESIGN ======= */
+
+@media screen and (max-width: 430px) {
+
+    /* NAVBAR */
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    /* Ajuste del Banner */
+    .banner {
+        height: 50vh; /* Reducimos el tamaño en móviles */
+        padding: 20px;
+    }
+
+    .banner h1 {
+        font-size: 2rem;
+    }
+
+    .banner p {
+        font-size: 1rem;
+    }
+
+    .btn-agendar {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    /* GALERÍA */
+    .contenedor-imagenes {
+        grid-template-columns: repeat(2, 1fr); /* Dos imágenes por fila en móvil */
+        gap: 1rem;
+    }
+
+    /* SECCIÓN DE PRODUCTOS ESTRELLA */
+    .productos-estrella {
+        padding: 50px 10px;
+    }
+
+    .productos-contenedor {
+        flex-direction: column; /* Mostrar productos en una sola columna */
+        align-items: center;
+    }
+
+    .producto {
+        width: 90%;
+    }
+
+    .producto img {
+        height: 250px;
+    }
+
+    /* TESTIMONIOS */
+    .testimonios-contenedor {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .testimonio {
+        max-width: 100%;
+    }
+
+    .testimonio img {
+        width: 80px;
+        height: 80px;
+    }
+
+    /* HORARIOS */
+    .horarios {
+        display: block;
+        text-align: center;
+        padding: 40px 15px;
+    }
+
+    .horarios-contenedor {
+        max-width: 100%;
+    }
+
+    /* MAPA */
+    .ubicacion iframe {
+        height: 250px;
+    }
+
+    /* FOOTER */
+    .footer {
+        padding: 20px 15px;
+    }
+
+    .social-icons {
+        margin-bottom: 15px;
+    }
+
+    .footer p {
+        font-size: 0.8rem;
+    }
 }
