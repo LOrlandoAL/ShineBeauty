@@ -1,4 +1,3 @@
-/* Definir paleta de colores como variables */
 :root {
     --color-oscuro: #36393B;
     --color-medio-oscuro: #45484B;
@@ -12,7 +11,7 @@
     position: relative;
     width: 100%;
     height: 88vh;
-    background-image: url('img/banner.jpg'); /* Imagen del banner */
+    background-image: url('img/banner.jpg'); 
     background-size: cover;
     background-position: center;
     display: flex;
@@ -20,16 +19,18 @@
     justify-content: center;
     text-align: center;
     color: var(--color-blanco);
-    z-index: 5; /* Se mantiene detrás del menú */
+    z-index: 5;
 }
-.contenido{
+
+.contenido {
     display: flex;
-    align-items: center; /* Alinea la imagen y el texto verticalmente */
-    justify-content: space-between; /* Separa la imagen y el texto */
-    gap: 20px; /* Espacio entre la imagen y el texto */
+    align-items: center; 
+    justify-content: space-between; 
+    gap: 20px; 
     margin-top: 20px;
 }
-.fondo{
+
+.fondo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,20 +42,18 @@
     width: 300px;
     text-align: center;
 }
-/* Formulario con alineación en columna */
+
 .form {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Espaciado entre elementos */
+    gap: 10px; 
     width: 100%;
 }
 
-/* Estilos para etiquetas */
 .form label {
     font-weight: bold;
 }
 
-/* Estilos para los inputs */
 .form input {
     padding: 10px;
     font-size: 16px;
@@ -62,7 +61,6 @@
     border-radius: 5px;
 }
 
-/* Botón estilizado */
 .form input[type="button"] {
     background-color: var(--color-medio-oscuro);
     color: white;
@@ -75,148 +73,41 @@
 .form input[type="button"]:hover {
     background-color: var(--color-oscuro);
 }
-/* Estilización de la imagen */
+
 .img {
-    width: 40%; /* Ajusta el tamaño de la imagen */
-    height: 200px; /* Ajusta la altura según sea necesario */
-    background-image: url('img/nosotros.png'); /* Agrega tu imagen */
+    width: 40%;
+    height: 200px;
+    background-image: url('img/nosotros.png');
     background-size: cover;
     background-position: center;
-    border-radius: 10px; /* Bordes redondeados */
+    border-radius: 10px;
 }
-/* Contenedor principal */
+
 .Nosotros {
-    width: 80%; 
-    margin: auto; 
+    width: 80%;
+    margin: auto;
     text-align: center;
 }
-
-/* Línea debajo del título */
-
 
 .Nosotros h2::after {
     content: "";
     display: block;
-    width: 100%; /* Longitud de la línea */
-    height: 3px; /* Grosor de la línea */
-    background-color: var(--color-oscuro); /* Color de la línea */
-    margin: 10px auto 0 auto; /* Centra la línea debajo del texto */
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-oscuro);
+    margin: 10px auto 0 auto;
 }
 
-/* Contenedor para la imagen y el texto */
 .Nosotros div {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px; /* Espacio entre la imagen y el texto */
+    gap: 20px;
     margin-top: 20px;
 }
 
-/* Estilización del texto */
 .texto {
     width: 50%;
-    font-size: 18px;
-    text-align: justify;
-}
-/* Contenedor principal */
-.mision{
-    width: 80%; /* Ajusta el ancho del contenedor */
-    margin: auto; /* Centra el contenedor */
-}
-/* Línea debajo del título */
-.mision h2 {
-    text-align: left;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-.mision h2::after {
-    content: "";
-    display: block;
-    width: 100%; /* Longitud de la línea */
-    height: 3px; /* Grosor de la línea */
-    background-color: var(--color-oscuro); /* Color de la línea */
-    margin-top: 5px; /* Espacio entre el título y la línea */
-}
-
-/* Contenedor de imagen y texto */
-.contenidoder{
-    display: flex;
-    align-items: center; /* Alinea la imagen y el texto verticalmente */
-    justify-content: space-between; /* Separa la imagen y el texto */
-    gap: 20px; /* Espacio entre la imagen y el texto */
-    flex-direction: row-reverse; /* Invierte el orden: imagen a la derecha */
-    margin-top: 20px;
-}
-/* Texto */
-.texder {
-    width: 55%; /* Ajusta el ancho del texto */
-    font-size: 18px;
-    text-align: justify;
-}
-/* Contenedor principal */
-.vision{
-    width: 80%; 
-    margin: auto; 
-    text-align: right;
-}
-
-/* Línea debajo del título */
-
-
-.vision h2::after {
-    content: "";
-    display: block;
-    width: 100%; /* Longitud de la línea */
-    height: 3px; /* Grosor de la línea */
-    background-color: var(--color-oscuro); /* Color de la línea */
-    margin: 10px auto 0 auto; /* Centra la línea debajo del texto */
-}
-
-/* Contenedor para la imagen y el texto */
-.vision div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px; /* Espacio entre la imagen y el texto */
-    margin-top: 20px;
-}
-/* Estilos para el contenedor del equipo */
-.equipo {
-    width: 80%; /* Ajusta el ancho del contenedor */
-    margin: auto; /* Centra el contenedor */
-    text-align: center;
-}
-
-.equipo h2::after {
-    content: "";
-    display: block;
-    width: 100%; /* Longitud de la línea */
-    height: 3px; /* Grosor de la línea */
-    background-color: var(--color-oscuro); /* Color de la línea */
-    margin: 10px auto 0 auto; /* Centra la línea debajo del texto */
-}
-/* Contenedor de la imagen y el texto */
-.contenidoE{
-    display: flex;
-    flex-direction: column; /* Cambia la dirección a columna para poner la imagen encima del texto */
-    align-items: center; /* Centra los elementos horizontalmente */
-    justify-content: center; /* Centra los elementos verticalmente */
-    gap: 20px; /* Espacio entre la imagen y el texto */
-}
-
-/* Estilización de la imagen */
-.imgE{
-    width: 60%; /* Ajusta el tamaño de la imagen */
-    height: 200px; /* Ajusta la altura según sea necesario */
-    background-image: url('img/Equipo.png'); /* Agrega tu imagen */
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px; /* Bordes redondeados */
-}
-
-/* Estilización del texto */
-.texto {
-    width: 80%; /* Ajusta el ancho del texto */
     font-size: 18px;
     text-align: justify;
 }

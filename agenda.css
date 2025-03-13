@@ -1,4 +1,4 @@
-/* Definir paleta de colores como variables */
+
 :root {
     --color-oscuro: #36393B;
     --color-medio-oscuro: #45484B;
@@ -7,9 +7,9 @@
     --color-muy-claro: #EEE6AB;
     --color-blanco: #F8F9F9;
 }
-/* Estilos para el botón */
+
 button {
-    background-color: var(--color-medio); /* Color elegante */
+    background-color: var(--color-medio); 
     color: var(--color-blanco);
     font-size: 16px;
     padding: 12px;
@@ -21,7 +21,7 @@ button {
 }
 
 button:hover {
-    background-color: var(--color-claro); /* Cambio de color al pasar el cursor */
+    background-color: var(--color-claro); 
 }
 .contenedor {
     width: 80%; 
@@ -58,7 +58,7 @@ button:hover {
 }
 .datosCitas {
     max-width: 400px;
-    margin: 0 auto; /* Centra la sección */
+    margin: 0 auto; 
     font-family: Arial, sans-serif;
 }
 
@@ -67,7 +67,7 @@ button:hover {
     font-style: italic;
     font-weight: normal;
     color: #333;
-    border-bottom: 2px solid var(--color-oscuro); /* Línea sutil debajo del título */
+    border-bottom: 2px solid var(--color-oscuro); 
     display: inline-block;
     padding-bottom: 5px;
 }
@@ -84,7 +84,7 @@ input {
     padding: 12px;
     font-size: 14px;
     border: none;
-    background-color: #f5f5f5; /* Fondo gris claro */
+    background-color: var(--color-claro); 
     border-radius: 10px;
     outline: none;
     font-style: italic;
@@ -94,7 +94,7 @@ input {
 .service-card {
     display: flex;
     align-items: center;
-    background: white;
+    background: var(--color-blanco);
     border-radius: 10px;
     padding: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
