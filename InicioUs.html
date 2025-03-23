@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de sesion </title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="EstilosBack.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/EstilosBack.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle" />
 </head>
 <body>
@@ -24,8 +24,8 @@
                     <li><a href="#">Retoque</a></li>
                 </ul>
             </li>
-            <li><a href="#">Acerca de</a></li>
-            <li><a href="#">Agendar</a></li>
+            <li><a href="nosotros.html">Acerca de</a></li>
+            <li><a href="agendar.html">Agendar</a></li>
             <li><a href="#">Contacto</a></li>
             <li><a href="#">Blog</a></li>
         </ul>
@@ -35,12 +35,12 @@
     </nav> 
     <main class="bannerB">
         <div class="fondo">
-            <form class="form">
+            <form class="form" action="datos/login.php" method="POST">
                 <label for="txtusuario">Usuario</label>
-                <input type="text">
+                <input type="text" name="usuario">
                 <label for="txtpass">Contraseña</label>
-                <input type="password">
-                <input type="button" value="Iniciar sesion">
+                <input type="password" name="contrasenia">
+                <input type="submit" value="Iniciar sesion">
             </form>
         </div>
     </main>
