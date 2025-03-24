@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->rowCount() > 0) {
         session_start();
         $_SESSION['usuario'] = $usuario;
-        header("Location: admin.php"); // Redirigir a la página de administrador
+        header("Location: ../admin.html"); // Redirigir a la página de administrador
         exit();
     } else {
         echo "<script>alert('Usuario o contraseña incorrectos'); window.location.href='../inicioUs.html';</script>";

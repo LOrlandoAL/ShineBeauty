@@ -45,5 +45,8 @@ class Conexion
     {
         return self::$conexion;
     }
+    public function close() {
+        $this-> conexion = null; // Liberar la conexión
+    }
 }
 ?>

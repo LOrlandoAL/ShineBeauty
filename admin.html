@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Servicio</title>
+    <link rel="stylesheet" href="css/EstilosBack.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    
+    <nav class="navbar">
+        <h2>Agregar Nuevo Servicio</h2>
+    </nav>
+    <main class="bannerB">
+        <div class="fondo">
+            <form action="datos/ServicioDao.php" method="POST" enctype="multipart/form-data"  class="form">
+                <label for="tipo">Tipo de Servicio:</label>
+                <select name="tipo" id="tipo" required>
+                    <option value="Corte">Corte</option>
+                    <option value="Peinado">Peinado</option>
+                    <option value="Maquillaje">Maquillaje</option>
+                    <option value="Manicure">Manicure</option>
+                    <option value="Pedicure">Pedicure</option>
+                    <option value="Skin Care">Skin Care</option>
+                    <option value="Retoque">Retoque</option>
+                </select>
+
+                <label for="nombre">Nombre del Servicio:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+
+                <label for="precio">Precio ($MXN):</label>
+                <input type="number" id="precio" name="precio" step="0.01" required>
+
+                <label for="tiempo">Tiempo (horas):</label>
+                <input type="number" id="tiempo" name="tiempo" step="0.1" required>
+
+                <label for="imagen">Imagen del Servicio:</label>
+                <input type="file" id="imagen" name="imagen" accept="image/*" required>
+
+                <button type="submit">Guardar Servicio</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
