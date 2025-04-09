@@ -57,7 +57,7 @@ function generarElementosHTML(datos) {
 
 // Función para cargar los datos desde PHP
 function cargarServiciosPorTipo(tipo) {
-    fetch(`datos/ObteberServicios.php?tipo=${encodeURIComponent(tipo)}`)
+    fetch(`datos/obteberServicios.php?tipo=${encodeURIComponent(tipo)}`)
         .then(res => res.json())
         .then(data => generarElementosHTML(data))
         .catch(error => {

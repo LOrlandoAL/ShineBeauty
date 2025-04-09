@@ -2,11 +2,11 @@ document.addEventListener('DOMContentLoaded', function () {
     cargarServicios();
 
     function cargarServicios() {
-        fetch('datos/TraerServicios.php') // <- Ajusta si quieres que traiga todos los servicios
+        fetch('datos/TraerServicios.php')
             .then(response => response.json())
             .then(data => {
-                console.log('Respuesta del servidor:', data); // 👈 Para que veas qué llega
-                mostrarServicios(data); // ✅ Ya no dará error
+                console.log('Respuesta del servidor:', data); // Debug
+                mostrarServicios(data);
             })
             .catch(error => console.error('Error al cargar servicios:', error));
     }
@@ -29,21 +29,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h2>${servicio.nombre}</h2>
                 <p><strong>Precio:</strong> $${servicio.precio}</p>
                 <p><strong>Tiempo:</strong> ${servicio.tiempo} Hr</p>
-                <p>${servicio.Servicioscol}</p>
+                <p>${servicio.descripcion}</p>
             `;
 
-            // Botón de editar
             const btnEditar = document.createElement('button');
             btnEditar.textContent = 'Editar';
             btnEditar.addEventListener('click', function () {
                 editarServicio(servicio);
             });
 
-            // Botón de eliminar
             const btnEliminar = document.createElement('button');
             btnEliminar.textContent = 'Eliminar';
             btnEliminar.addEventListener('click', function () {
-                eliminarServicio(servicio);
+                eliminarServicio(servicio.idServicios);
             });
 
             card.appendChild(img);
@@ -57,35 +55,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function editarServicio(servicio) {
         // Rellenamos el formulario con la info del servicio
-        document.getElementById('tipo').value = servicio.tipo;
+        document.getElementById('tipo').value = servicio.Tipo;
         document.getElementById('nombre').value = servicio.nombre;
-        document.getElementById('descripcion').value = servicio.Servicioscol;
+        document.getElementById('descripcion').value = servicio.descripcion;
         document.getElementById('precio').value = servicio.precio;
         document.getElementById('tiempo').value = servicio.tiempo;
 
-        // Cambiamos el action del formulario para editar
         const form = document.querySelector('.form');
         console.log('Editando servicio ID:', servicio.idServicios);
         form.action = 'datos/EditarServicio.php?id=' + servicio.idServicios;
     }
 
-    function eliminarServicio(servicio) {
-        if (confirm(`¿Estás seguro de eliminar el servicio "${servicio.nombre}"?`)) {
-            fetch('datos/EditarServicio.php?id=' + servicio.id, {
-                method: 'POST',
-                body: new FormData(form)
+    function eliminarServicio(idServicio) {
+        if (confirm('¿Estás seguro de eliminar este servicio?')) {
+            fetch('datos/EliminarServicio.php?id=' + idServicio, {
+                method: 'POST'
             })
             .then(response => response.json())
             .then(data => {
-                alert(data.mensaje); // Muestra el mensaje que viene del PHP
-            
-                if (data.redirect) {
-                    window.location.href = data.redirect; // 🔥 Aquí haces la redirección
-                }
+                alert(data.mensaje);
+                cargarServicios(); // Recarga la lista
             })
             .catch(error => console.error('Error:', error));
-            
         }
     }
 });
-

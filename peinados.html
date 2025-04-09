@@ -1,41 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PEINADOS</title>
-    <link rel="stylesheet" href="css/style2.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catálogo de Peinados</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/catalogo.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Inicio</a></li>
-            <li class="dropdown">
-                <a href="#">Servicios ▾</a>
-                <ul class="dropdown-menu">
-                    <li><a href="Cortes.html">Cortes</a></li>
-                    <li><a href="#">Maquillaje</a></li>
-                    <li><a href="#">Manicure</a></li>
-                    <li><a href="#">Pedicure</a></li>
-                    <li><a href="#">Skin Care</a></li>
-                    <li><a href="#">Retoque</a></li>
-                </ul>
-            </li>
-            <li><a href="nosotros.html">Acerca de</a></li>
-            <li><a href="agendar.html">Agendar</a></li>
-            <li><a href="#">Contacto</a></li>
-            <li><a href="#">Blog</a></li>
-        </ul>
-        <div class="user-profile">
-            <div class="user-icon"><span class="material-symbols-outlined">account_circle</span></div>
-        </div>
-    </nav>
 
-    <!-- Contenedor donde se mostrarán los datos -->
-    <section id="contenedor-datos" class="contenedor-servicios">
-        <!-- Aquí se cargarán los elementos dinámicamente -->
-    </section>
-    <script src="js/servicios.js"></script>
+  <!-- Contenedor para cargar dinámicamente el navbar -->
+  <div id="navbar-container"></div>
+
+  <main class="catalogo-servicios">
+    <h1>Catálogo de Peinados</h1>
+
+    <div id="servicios-lista" class="servicios-grid">
+      <!-- Servicios dinámicos filtrados por categoría -->
+    </div>
+  </main>
+
+  <script>
+    // Carga dinámica del navbar
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-container').innerHTML = data;
+      });
+
+    // Define la categoría actual para el catálogo
+    const categoriaActual = 'Peinado'; // Cambia por la categoría que corresponda
+  </script>
+
+  <script src="js/catalogo.js"></script>
 </body>
 </html>

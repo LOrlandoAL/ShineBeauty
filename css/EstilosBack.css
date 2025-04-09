@@ -220,3 +220,80 @@
     font-size: 18px;
     text-align: justify;
 }
+
+
+.servicio-listado {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.servicio-card {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-blanco);
+  border-bottom: 1px solid var(--color-medio);
+  padding: 20px 0;
+  gap: 20px;
+}
+
+.servicio-card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.servicio-info {
+  flex-grow: 1;
+}
+
+.servicio-info h4 {
+  margin: 0;
+  color: var(--color-medio);
+  font-size: 1.2rem;
+  font-style: italic;
+  border-bottom: 1px solid var(--color-muy-claro);
+  display: inline-block;
+  padding-bottom: 3px;
+}
+
+.servicio-info p {
+  margin: 5px 0;
+  color: var(--color-medio-oscuro);
+  font-size: 0.95rem;
+}
+
+.servicio-info p strong::before {
+  margin-right: 5px;
+}
+
+.servicio-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.servicio-actions button {
+  background-color: var(--color-medio);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 120px;
+}
+
+.servicio-actions button:hover {
+  background-color: var(--color-claro);
+}
+
+.btn-eliminar {
+  background-color: crimson;
+}
+
+.btn-eliminar:hover {
+  background-color: darkred;
+}

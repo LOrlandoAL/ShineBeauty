@@ -37,7 +37,7 @@ try {
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
         $imagenTmp = $_FILES['imagen']['tmp_name'];
         $nombreImagen = basename($_FILES['imagen']['name']);
-        $rutaDestino = '../uploads/' . $nombreImagen;
+        $rutaDestino = __DIR__ . '/../uploads/' . basename($nombreImagen);
 
         // Mover la imagen a la carpeta uploads
         if (move_uploaded_file($imagenTmp, $rutaDestino)) {

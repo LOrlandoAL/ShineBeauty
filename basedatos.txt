@@ -1,0 +1,69 @@
+DROP DATABASE IF EXISTS sunshie;
+CREATE DATABASE sunshie CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE sunshie;
+
+-- Usuarios
+CREATE TABLE usuario (
+  idUsuario INT NOT NULL AUTO_INCREMENT,
+  Usuario VARCHAR(45) NOT NULL,
+  contrasenia CHAR(64) DEFAULT NULL,
+  PRIMARY KEY (idUsuario)
+);
+
+-- Servicios
+CREATE TABLE servicios (
+  idServicios INT NOT NULL AUTO_INCREMENT,
+  Tipo VARCHAR(15) NOT NULL,
+  imagen LONGBLOB NOT NULL,
+  nombre VARCHAR(45) NOT NULL,
+  descripcion VARCHAR(250) NOT NULL,
+  precio INT NOT NULL,
+  tiempo DECIMAL(4,0) NOT NULL,
+  PRIMARY KEY (idServicios)
+);
+
+-- Citas
+CREATE TABLE citas (
+  idCita INT NOT NULL AUTO_INCREMENT,
+  idUsuario INT NOT NULL,
+  fecha DATE NOT NULL,
+  hora TIME NOT NULL,
+  nombreCliente VARCHAR(100) NOT NULL,
+  telefonoCliente CHAR(10) NOT NULL,
+  correoCliente VARCHAR(45) NOT NULL,
+  PRIMARY KEY (idCita),
+  FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
+);
+
+-- Relación cita - servicios
+CREATE TABLE cita_servicios (
+  idCitaServicio INT NOT NULL AUTO_INCREMENT,
+  idCita INT NOT NULL,
+  idServicio INT NOT NULL,
+  hora TIME NOT NULL,
+  PRIMARY KEY (idCitaServicio),
+  FOREIGN KEY (idCita) REFERENCES citas(idCita),
+  FOREIGN KEY (idServicio) REFERENCES servicios(idServicios)
+);
+
+-- Insertamos el usuario admin por defecto
+INSERT INTO usuario (Usuario, contrasenia) VALUES ('Admin', SHA2('Admin', 256));
+
+-- Consultar usuarios
+SELECT * FROM usuario;
+SELECT * FROM citas;
+Select * From servicios;
+SELECT idServicios, nombre FROM servicios;
+
+ALTER TABLE usuario
+ADD COLUMN nombre_completo VARCHAR(100) NOT NULL,
+ADD COLUMN telefono VARCHAR(15) NOT NULL,
+ADD COLUMN correo_electronico VARCHAR(100) NOT NULL;
+
+UPDATE usuario
+SET nombre_completo = 'Admin Principal',
+    telefono = '1234567890',
+    correo_electronico = 'admin@example.com'
+WHERE idUsuario = 1;
+
+

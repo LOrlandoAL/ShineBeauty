@@ -10,19 +10,13 @@ $descripcion = $_POST['descripcion'];
 $precio = $_POST['precio'];
 $tiempo = $_POST['tiempo'];
 
-// Verificar que la carpeta 'uploads' exista
-if (!file_exists('uploads')) {
-    mkdir('uploads', 0777, true);
-}
+// Verificar que se haya subido la imagen
+if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+    $imagenTemp = $_FILES['imagen']['tmp_name'];
+    $imagenBinaria = file_get_contents($imagenTemp); // Leer la imagen como binario
 
-// Manejo de la imagen
-$imagenNombre = $_FILES['imagen']['name'];
-$imagenTemp = $_FILES['imagen']['tmp_name'];
-$rutaDestino = "uploads/" . basename($imagenNombre);
-
-if (move_uploaded_file($imagenTemp, $rutaDestino)) {
-    // Insertar datos en la BD
-    $sql = "INSERT INTO servicios (tipo, nombre, Servicioscol, precio, tiempo, imagen) 
+    // Preparar la consulta
+    $sql = "INSERT INTO servicios (Tipo, nombre, descripcion, precio, tiempo, imagen) 
             VALUES (:tipo, :nombre, :descripcion, :precio, :tiempo, :imagen)";
     
     $stmt = $conn->prepare($sql);
@@ -31,7 +25,7 @@ if (move_uploaded_file($imagenTemp, $rutaDestino)) {
     $stmt->bindParam(':descripcion', $descripcion);
     $stmt->bindParam(':precio', $precio);
     $stmt->bindParam(':tiempo', $tiempo);
-    $stmt->bindParam(':imagen', $rutaDestino);
+    $stmt->bindParam(':imagen', $imagenBinaria, PDO::PARAM_LOB);
 
     if ($stmt->execute()) {
         echo "Servicio agregado correctamente.";
@@ -39,9 +33,9 @@ if (move_uploaded_file($imagenTemp, $rutaDestino)) {
         echo "Error al agregar servicio.";
     }
 } else {
-    echo "Error al subir la imagen.";
+    echo "Por favor selecciona una imagen para el servicio.";
 }
 
-// Cerrar la conexión correctamente
+// Cerrar la conexión
 $conn = null;
 ?>

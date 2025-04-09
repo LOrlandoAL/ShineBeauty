@@ -20,7 +20,7 @@ class Conexion
                 session_start();
                 //echo "La sesión no está activa.";
             }
-            self::$conexion = new PDO("mysql:host=localhost" . ";port=3306" . ";dbname=sunshie","root","");
+            self::$conexion = new PDO("mysql:host=localhost" . ";port=3306" . ";dbname=sunshie","root","root");
             self::$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
            // echo "Conexion exitosa!";
         } catch (PDOException $e) {
