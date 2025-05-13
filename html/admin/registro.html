@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro de Usuario</title>
+  <link rel="stylesheet" href="../../css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="fondo-login"></div>
+
+  <main class="login-container">
+    <form id="formRegistro" class="login-form registro-form" method="POST" action="../../datos/registrar_usuario.php">
+      <div class="icono-usuario">
+        <span class="material-symbols-outlined">account_circle</span>
+      </div>
+
+      <div class="grupo-campos">
+        <div class="campo">
+          <label>Nombre</label>
+          <input type="text" name="nombre" required class="input">
+        </div>
+        <div class="campo">
+          <label>Apellido Paterno</label>
+          <input type="text" name="apellido_paterno" required class="input">
+        </div>
+        <div class="campo">
+          <label>Apellido Materno</label>
+          <input type="text" name="apellido_materno" required class="input">
+        </div>
+      </div>
+
+      <div class="grupo-campos">
+        <div class="campo">
+          <label>Correo</label>
+          <input type="email" name="correo" required class="input">
+        </div>
+        <div class="campo">
+          <label>Número de Teléfono</label>
+          <input type="tel" name="telefono" pattern="[0-9]{10}" required class="input">
+        </div>
+      </div>
+
+      <div class="grupo-campos">
+        <div class="campo">
+          <label>Fecha de Nacimiento</label>
+          <input type="date" name="fecha_nacimiento" required class="input">
+        </div>
+        <div class="campo">
+          <label>Género</label>
+          <select name="genero" class="input" required>
+            <option value="" disabled selected>Seleccione</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grupo-campos">
+        <div class="campo">
+          <label>Nombre de Usuario</label>
+          <input type="text" name="usuario" required class="input">
+        </div>
+      </div>
+
+      <div class="grupo-campos">
+        <div class="campo">
+          <label>Contraseña</label>
+          <input type="password" name="contrasenia" required class="input">
+        </div>
+        <div class="campo">
+          <label>Confirmar Contraseña</label>
+          <input type="password" name="confirmar_contrasenia" required class="input">
+        </div>
+      </div>
+
+      <button type="submit" class="btn-login">Registrar</button>
+
+      <p class="volver-inicio">
+        ¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a>
+      </p>
+    </form>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catálogo de Peinados</title>
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/catalogo.css" />
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/nav.css" />
+</head>
+<body>
+
+  <div id="navbar-container"></div>
+    <script>
+      fetch('../../html/props/navbar.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('navbar-container').innerHTML = html;
+        });
+    </script>
+
+  <main class="catalogo-servicios">
+    <h1>Catálogo de Cortes</h1>
+
+    <div id="servicios-lista" class="servicios-grid">
+      <!-- Servicios dinámicos filtrados por categoría -->
+    </div>
+  </main>
+
+  <script src="../../js/catalogo.js"></script>
+</body>
+</html>

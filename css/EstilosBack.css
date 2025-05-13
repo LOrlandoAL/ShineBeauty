@@ -77,9 +77,9 @@
 }
 /* Estilización de la imagen */
 .img {
-    width: 40%; /* Ajusta el tamaño de la imagen */
-    height: 200px; /* Ajusta la altura según sea necesario */
-    background-image: url('../img/nosotros.png'); /* Agrega tu imagen */
+    width: 40%;
+    height: 200px;
+    background-image: url('../img/props/nosotros.png');
     background-size: cover;
     background-position: center;
     border-radius: 10px; /* Bordes redondeados */
@@ -208,7 +208,7 @@
 .imgE{
     width: 60%; /* Ajusta el tamaño de la imagen */
     height: 200px; /* Ajusta la altura según sea necesario */
-    background-image: url('../img/Equipo.png'); /* Agrega tu imagen */
+    background-image: url('../img/props/Equipo.png'); /* Agrega tu imagen */
     background-size: cover;
     background-position: center;
     border-radius: 10px; /* Bordes redondeados */

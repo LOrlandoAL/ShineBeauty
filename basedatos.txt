@@ -1,16 +1,34 @@
+-- 🚫 Eliminar base de datos si ya existe
 DROP DATABASE IF EXISTS sunshie;
+
+-- ✅ Crear nueva base de datos con soporte UTF-8
 CREATE DATABASE sunshie CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE sunshie;
 
--- Usuarios
+-- ======================================
+-- 🔐 TABLA DE USUARIOS (ACTUALIZADA)
+-- ======================================
 CREATE TABLE usuario (
   idUsuario INT NOT NULL AUTO_INCREMENT,
-  Usuario VARCHAR(45) NOT NULL,
+  Usuario VARCHAR(45) NOT NULL UNIQUE,
   contrasenia CHAR(64) DEFAULT NULL,
+  nombre VARCHAR(100) NOT NULL,
+  apellido_paterno VARCHAR(100) NOT NULL,
+  apellido_materno VARCHAR(100) NOT NULL,
+  correo_electronico VARCHAR(100) NOT NULL UNIQUE,
+  telefono VARCHAR(15) NOT NULL,
+  fecha_nacimiento DATE,
+  genero VARCHAR(20),
   PRIMARY KEY (idUsuario)
 );
 
--- Servicios
+-- Insertar usuario admin por defecto
+INSERT INTO usuario (Usuario, contrasenia, nombre, apellido_paterno, apellido_materno, correo_electronico, telefono, fecha_nacimiento, genero)
+VALUES ('Admin', SHA2('Admin', 256), 'Admin', 'Principal', 'Root', 'admin@example.com', '1234567890', '1990-01-01', 'Otro');
+
+-- ======================================
+-- 💇‍♀️ TABLA DE SERVICIOS
+-- ======================================
 CREATE TABLE servicios (
   idServicios INT NOT NULL AUTO_INCREMENT,
   Tipo VARCHAR(15) NOT NULL,
@@ -22,7 +40,9 @@ CREATE TABLE servicios (
   PRIMARY KEY (idServicios)
 );
 
--- Citas
+-- ======================================
+-- 📅 TABLA DE CITAS
+-- ======================================
 CREATE TABLE citas (
   idCita INT NOT NULL AUTO_INCREMENT,
   idUsuario INT NOT NULL,
@@ -35,7 +55,9 @@ CREATE TABLE citas (
   FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
 );
 
--- Relación cita - servicios
+-- ======================================
+-- 🔗 RELACIÓN CITA - SERVICIOS
+-- ======================================
 CREATE TABLE cita_servicios (
   idCitaServicio INT NOT NULL AUTO_INCREMENT,
   idCita INT NOT NULL,
@@ -46,24 +68,10 @@ CREATE TABLE cita_servicios (
   FOREIGN KEY (idServicio) REFERENCES servicios(idServicios)
 );
 
--- Insertamos el usuario admin por defecto
-INSERT INTO usuario (Usuario, contrasenia) VALUES ('Admin', SHA2('Admin', 256));
-
--- Consultar usuarios
+-- =============================
+-- 📊 CONSULTAS DE PRUEBA
+-- =============================
 SELECT * FROM usuario;
 SELECT * FROM citas;
-Select * From servicios;
+SELECT * FROM servicios;
 SELECT idServicios, nombre FROM servicios;
-
-ALTER TABLE usuario
-ADD COLUMN nombre_completo VARCHAR(100) NOT NULL,
-ADD COLUMN telefono VARCHAR(15) NOT NULL,
-ADD COLUMN correo_electronico VARCHAR(100) NOT NULL;
-
-UPDATE usuario
-SET nombre_completo = 'Admin Principal',
-    telefono = '1234567890',
-    correo_electronico = 'admin@example.com'
-WHERE idUsuario = 1;
-
-

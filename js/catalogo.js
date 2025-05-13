@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const serviciosLista = document.getElementById('servicios-lista');
 
-  fetch('datos/TraerServicios.php')
+  fetch('../../datos/TraerServicios.php')
     .then(response => response.json())
     .then(servicios => {
       const serviciosFiltrados = servicios.filter(servicio => servicio.Tipo.toLowerCase() === categoriaActual.toLowerCase());

@@ -5,12 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shine Beauty</title>
   <link rel="stylesheet" href="css/style.css" />
+}<link rel="stylesheet" href="css/nav.css" />
   <link rel="stylesheet" href="css/catalogo.css" />
 </head>
 <body>
 
-  <!-- Contenedor para cargar el Navbar externo -->
   <div id="navbar-container"></div>
+  <script>
+    fetch('html/props/navbar.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('navbar-container').innerHTML = html;
+      });
+  </script>
 
   <header class="banner">
     <div class="banner-content">
@@ -97,22 +104,13 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="social-icons">
-        <a href="#"><img src="img/icons/instagram.svg" alt="Instagram"></a>
-        <a href="#"><img src="img/icons/facebook.svg" alt="Facebook"></a>
+        <a href="#"><img src="/img/icons/instagram.svg" alt="Instagram"></a>
+        <a href="#"><img src="/img/icons/facebook.svg" alt="Facebook"></a>
       </div>
       <p>© Copyright 2025 <strong>SHINE BEAUTY STUDIOS</strong></p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
     </div>
   </footer>
-
-  <!-- Script para incluir el navbar -->
-  <script>
-    fetch('navbar.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('navbar-container').innerHTML = data;
-      });
-  </script>
 
 </body>
 </html>
