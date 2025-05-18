@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro de Usuario</title>
+  <link rel="stylesheet" href="css/register.css" />
+</head>
+<body>
+
+  <div class="login-container">
+    <form id="formRegistro" method="POST" action="datos/registro.php" class="formulario">
+      <div class="icono">
+        <span class="material-symbols-outlined">person_add</span>
+      </div>
+      <h1>Crear cuenta</h1>
+
+      <div class="campos-form">
+        <input type="text" name="nombre" placeholder="Nombre completo" required />
+        <input type="text" name="usuario" placeholder="Nombre de usuario" required />
+
+        <div class="apellidos">
+          <input type="text" name="apellido_paterno" placeholder="Apellido paterno" required />
+          <input type="text" name="apellido_materno" placeholder="Apellido materno" required />
+        </div>
+
+        <input type="tel" name="telefono" placeholder="Teléfono" required maxlength="10" pattern="[0-9]{10}" />
+        <input type="email" name="correo_electronico" placeholder="Correo electrónico" required />
+
+        <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+        <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" required />
+
+        <label for="genero">Género:</label>
+        <select name="genero" id="genero" required>
+          <option value="">Selecciona una opción</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Otro">Otro</option>
+        </select>
+
+        <input type="password" name="contrasenia" placeholder="Contraseña" required />
+      </div>
+
+      <button type="submit">Registrarme</button>
+
+      <p class="volver-login">
+        ¿Ya tienes una cuenta? <a href="login.html">Iniciar sesión</a>
+      </p>
+    </form>
+  </div>
+
+</body>
+</html>

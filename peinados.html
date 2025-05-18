@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catálogo de Peinados</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/catalogo.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+  <ul class="nav-links" id="navLinks">
+    <!-- Aquí se renderizarán los enlaces dependiendo del rol -->
+  </ul>
+
+  <div class="user-profile" id="userNav">
+    <!-- Aquí va el botón de acceder o el nombre de usuario -->
+  </div>
+</nav>
+
+<script>
+  const user = JSON.parse(localStorage.getItem('usuario'));
+  const navLinks = document.getElementById('navLinks');
+  const userNav = document.getElementById('userNav');
+
+  if (!user || !user.Usuario) {
+    // ✅ No hay sesión iniciada
+    navLinks.innerHTML = `
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li class="dropdown">
+        <a href="#">Servicios ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="cortes.html">Cortes</a></li>
+          <li><a href="peinados.html">Peinados</a></li>
+          <li><a href="#">Maquillaje</a></li>
+          <li><a href="#">Manicure</a></li>
+          <li><a href="#">Pedicure</a></li>
+          <li><a href="#">Skin Care</a></li>
+          <li><a href="#">Retoque</a></li>
+        </ul>
+      </li>
+      <li><a href="nosotros.html">Acerca de</a></li>
+      <li><a href="agendar.html">Agendar</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="pages/blog.html">Blog</a></li>
+    `;
+
+    userNav.innerHTML = `
+      <button class="btn-acceder" onclick="window.location.href='login.html'">Acceder</button>
+    `;
+  } else if (user.tipo === "admin") {
+    // 🛠️ Usuario Administrador
+    navLinks.innerHTML = `
+      <li class="dropdown">
+        <a href="#">Servicios ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="cortes.html">Cortes</a></li>
+          <li><a href="peinados.html">Peinados</a></li>
+        </ul>
+      </li>
+      <li><a href="adminServicios.html">Gestión de Servicios</a></li>
+      <li><a href="adminCitas.html">Gestión de Citas</a></li>
+      <li><a href="adminUsuarios.html">Gestión de Usuarios</a></li>
+    `;
+
+    userNav.innerHTML = `
+      <span style="color:white; margin-left: 4px; font-weight: bold;">Bienvenido ${user.tipo} ${user.nombre} </span>
+    `;
+  } else {
+    // 👤 Usuario Cliente
+    navLinks.innerHTML = `
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li class="dropdown">
+        <a href="#">Servicios ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="cortes.html">Cortes</a></li>
+          <li><a href="peinados.html">Peinados</a></li>
+          <li><a href="#">Maquillaje</a></li>
+          <li><a href="#">Manicure</a></li>
+          <li><a href="#">Pedicure</a></li>
+          <li><a href="#">Skin Care</a></li>
+          <li><a href="#">Retoque</a></li>
+        </ul>
+      </li>
+      <li><a href="nosotros.html">Acerca de</a></li>
+      <li><a href="agendar.html">Agendar</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="pages/blog.html">Blog</a></li>
+    `;
+
+    userNav.innerHTML = `
+      <span style="color:white; margin-left: 4px; font-weight: bold;">Bienvenido ${user.nombre}</span>
+    `;
+  }
+</script>
+
+  <main class="catalogo-servicios">
+    <h1>Catálogo de Peinados</h1>
+
+    <div id="servicios-lista" class="servicios-grid">
+      <!-- Servicios dinámicos filtrados por categoría -->
+    </div>
+  </main>
+
+  <script src="js/catalogo.js"></script>
+</body>
+</html>

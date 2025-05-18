@@ -1,0 +1,107 @@
+/* === Estilo específico para Catálogo de Servicios === */
+
+/* Contenedor general del catálogo */
+.catalogo-servicios {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.catalogo-servicios h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--color-oscuro);
+    font-style: italic;
+}
+
+/* Grid de servicios */
+.servicios-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+/* Tarjeta de servicio */
+.servicio-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--color-claro);
+}
+
+/* Imagen del servicio */
+.servicio-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+/* Información del servicio */
+.servicio-info {
+    text-align: left;
+    color: var(--color-oscuro);
+    flex-grow: 1;
+}
+
+.servicio-info h3 {
+    font-style: italic;
+    color: var(--color-medio-oscuro);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--color-claro);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.servicio-info .detalle-icono {
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+    color: var(--color-oscuro);
+    margin-bottom: 6px;
+}
+
+.servicio-info .detalle-icono img {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    filter: grayscale(1);
+    opacity: 0.7;
+}
+
+.servicio-info p.descripcion {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: var(--color-oscuro);
+    line-height: 1.5;
+}
+
+/* Línea divisoria entre servicios */
+.servicio-card:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .servicio-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .servicio-card img {
+        width: 100%;
+        height: auto;
+    }
+
+    .servicio-info {
+        text-align: center;
+    }
+
+    .servicio-info .detalle-icono {
+        justify-content: center;
+    }
+}

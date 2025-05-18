@@ -1,0 +1,68 @@
+
+
+.login-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: var(--color-blanco);
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.icono {
+  display: flex;
+  justify-content: center;
+  font-size: 60px;
+  color: var(--color-medio);
+  margin-bottom: 20px;
+}
+
+.formulario h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--color-oscuro);
+}
+
+.campos-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.campos-form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--color-medio);
+}
+
+.apellidos {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  background-color: var(--color-oscuro);
+  color: black;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--color-claro);
+}
+
+.volver-login {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.volver-login a {
+  color: var(--color-medio-oscuro);
+  font-weight: bold;
+  text-decoration: none;
+}

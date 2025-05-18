@@ -1,0 +1,89 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-container {
+  min-height: 100vh;
+  background-image: url('/ShineBeauty/img/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-icon span {
+  font-size: 60px;
+  color: var(--color-medio);
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  font-style: italic;
+  color: var(--color-oscuro);
+}
+
+.campo {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--color-medio-oscuro);
+}
+
+.campo input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--color-medio);
+  border-radius: 8px;
+  background-color: var(--color-muy-claro);
+  font-size: 1rem;
+}
+
+.btn-ingresar {
+  width: 100%;
+  background-color: var(--color-medio);
+  color: white;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-ingresar:hover {
+  background-color: var(--color-claro);
+}
+
+.login-links {
+  margin-top: 15px;
+}
+
+.login-links a {
+  color: var(--color-medio-oscuro);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.login-links a:hover {
+  text-decoration: underline;
+}

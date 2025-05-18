@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto - Shine Beauty</title>
+  <link rel="stylesheet" href="css/contacto.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+</head>
+<body>
+    <nav class="navbar">
+  <ul class="nav-links" id="navLinks">
+    <!-- Aquí se renderizarán los enlaces dependiendo del rol -->
+  </ul>
+
+  <div class="user-profile" id="userNav">
+    <!-- Aquí va el botón de acceder o el nombre de usuario -->
+  </div>
+</nav>
+
+<script>
+  const user = JSON.parse(localStorage.getItem('usuario'));
+  const navLinks = document.getElementById('navLinks');
+  const userNav = document.getElementById('userNav');
+
+  if (!user || !user.Usuario) {
+    // ✅ No hay sesión iniciada
+    navLinks.innerHTML = `
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li class="dropdown">
+        <a href="#">Servicios ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="cortes.html">Cortes</a></li>
+          <li><a href="peinados.html">Peinados</a></li>
+          <li><a href="#">Maquillaje</a></li>
+          <li><a href="#">Manicure</a></li>
+          <li><a href="#">Pedicure</a></li>
+          <li><a href="#">Skin Care</a></li>
+          <li><a href="#">Retoque</a></li>
+        </ul>
+      </li>
+      <li><a href="nosotros.html">Acerca de</a></li>
+      <li><a href="agendar.html">Agendar</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="pages/blog.html">Blog</a></li>
+    `;
+
+    userNav.innerHTML = `
+      <button class="btn-acceder" onclick="window.location.href='login.html'">Acceder</button>
+    `;
+  } else if (user.tipo === "admin") {
+    // 🛠️ Usuario Administrador
+    navLinks.innerHTML = `
+      <li class="dropdown">
+        <a href="#">Servicios ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="cortes.html">Cortes</a></li>
+          <li><a href="peinados.html">Peinados</a></li>
+        </ul>
+      </li>
+      <li><a href="adminServicios.html">Gestión de Servicios</a></li>
+      <li><a href="adminCitas.html">Gestión de Citas</a></li>
+      <li><a href="adminUsuarios.html">Gestión de Usuarios</a></li>
+    `;
+
+    userNav.innerHTML = `
+      <span style="color:white; margin-left: 4px; font-weight: bold;">Bienvenido ${user.tipo} ${user.nombre} </span>
+    `;
+  } else {
+    // 👤 Usuario Cliente
+    navLinks.innerHTML = `
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li class="dropdown">
+        <a href="#">Servicios ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="cortes.html">Cortes</a></li>
+          <li><a href="peinados.html">Peinados</a></li>
+          <li><a href="#">Maquillaje</a></li>
+          <li><a href="#">Manicure</a></li>
+          <li><a href="#">Pedicure</a></li>
+          <li><a href="#">Skin Care</a></li>
+          <li><a href="#">Retoque</a></li>
+        </ul>
+      </li>
+      <li><a href="nosotros.html">Acerca de</a></li>
+      <li><a href="agendar.html">Agendar</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="pages/blog.html">Blog</a></li>
+    `;
+
+    userNav.innerHTML = `
+      <span style="color:white; margin-left: 4px; font-weight: bold;">Bienvenido ${user.nombre}</span>
+    `;
+  }
+</script>
+
+<!-- GALERÍA DESLIZANTE -->
+<section class="galeria-slider">
+  <div class="slider">
+    <div class="slide-track">
+      <div class="slide"><img src="/ShineBeauty/img/cabello/peinado1.jpg" alt="Imagen 1"></div>
+      <div class="slide"><img src="/ShineBeauty/img/cabello/peinado2.jpg" alt="Imagen 2"></div>
+      <div class="slide"><img src="/ShineBeauty/img/cabello/peinado3.jpg" alt="Imagen 3"></div>
+      <div class="slide"><img src="/ShineBeauty/img/cabello/peinado4.png" alt="Imagen 4"></div>
+      <div class="slide"><img src="/ShineBeauty/img/cabello/peinado5.jpg" alt="Imagen 5"></div>
+      <!-- Repetimos para efecto continuo -->
+      <div class="slide"><img src="/ShineBeauty/img/cabello/peinado1.jpg" alt="Imagen 1"></div>
+      <div class="slide"><img src="/ShineBeauty/img/cabello/peinado2.jpg" alt="Imagen 2"></div>
+      <div class="slide"><img src="/ShineBeauty/img/cabello/peinado3.jpg" alt="Imagen 3"></div>
+      <div class="slide"><img src="/ShineBeauty/img/cabello/peinado4.png" alt="Imagen 4"></div>
+      <div class="slide"><img src="/ShineBeauty/img/cabello/peinado5.jpg" alt="Imagen 5"></div>
+    </div>
+  </div>
+</section>
+
+
+  <main class="pagina-contacto">
+    <section class="contacto-hero">
+      <h1>Contáctanos</h1>
+      <p>Estamos aquí para ayudarte a brillar ✨</p>
+    </section>
+
+    <section class="contacto-info">
+      <div class="contacto-detalles">
+        <h2>Información de contacto</h2>
+        <ul>
+          <li><strong>📍 Dirección:</strong> Calle Ejército Nacional #9, Zona Centro, Uriangato, Gto.</li>
+          <li><strong>📞 Teléfono:</strong> <a href="tel:+524451234567">+52 445 123 4567</a></li>
+          <li><strong>📞 WhatsApp:</strong> <a href="https://wa.me/524451234567" target="_blank">+52 445 123 4567</a></li>
+          <li><strong>📧 Correo:</strong> <a href="mailto:contacto@shinebeauty.mx">contacto@shinebeauty.mx</a></li>
+          <li><strong>📧 Soporte:</strong> <a href="mailto:soporte@shinebeauty.mx">soporte@shinebeauty.mx</a></li>
+        </ul>
+      </div>
+
+      <div class="contacto-mapa">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14984.48918342472!2d-101.17306214999999!3d20.128944899999972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842cfac86f0e2fdd%3A0x6d3f1d4dee8f522!2sC.%20Ej%C3%A9rcito%20Nacional%209%2C%20Zona%20Centro%2C%2038980%20Uriangato%2C%20Gto.!5e0!3m2!1ses-419!2smx!4v1741818899884!5m2!1ses-419!2smx"
+          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="social-icons">
+        <a href="#"><img src="/ShineBeauty/img/icons/instagram.svg" alt="Instagram"></a>
+        <a href="#"><img src="/ShineBeauty/img/icons/facebook.svg" alt="Facebook"></a>
+      </div>
+      <p>© 2025 <strong>Shine Beauty Studios</strong> | Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

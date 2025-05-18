@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Administrar Servicios</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/EstilosBack.css" />
+  <style>
+
+
+
+    body {
+      background-color: var(--color-blanco);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: var(--color-oscuro);
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--color-oscuro);
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto 40px auto;
+      background-color: var(--color-muy-claro);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    form label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: var(--color-medio-oscuro);
+    }
+
+    form input,
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--color-medio);
+      background-color: var(--color-blanco);
+      color: var(--color-oscuro);
+    }
+
+    form button {
+      margin-top: 20px;
+      background-color: var(--color-medio);
+      color: var(--color-blanco);
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    form button:hover {
+      background-color: var(--color-claro);
+    }
+
+    .categoria {
+      margin-top: 40px;
+    }
+
+    .categoria h3 {
+      background-color: var(--color-medio);
+      color: var(--color-blanco);
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <ul class="nav-links" id="navLinks">
+    <!-- Aquí se renderizarán los enlaces dependiendo del rol -->
+  </ul>
+
+  <div class="user-profile" id="userNav">
+    <!-- Aquí va el botón de acceder o el nombre de usuario -->
+  </div>
+</nav>
+
+<script>
+  const user = JSON.parse(localStorage.getItem('usuario'));
+  const navLinks = document.getElementById('navLinks');
+  const userNav = document.getElementById('userNav');
+
+  if (!user || !user.Usuario) {
+    // ✅ No hay sesión iniciada
+    navLinks.innerHTML = `
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li class="dropdown">
+        <a href="#">Servicios ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="cortes.html">Cortes</a></li>
+          <li><a href="peinados.html">Peinados</a></li>
+          <li><a href="#">Maquillaje</a></li>
+          <li><a href="#">Manicure</a></li>
+          <li><a href="#">Pedicure</a></li>
+          <li><a href="#">Skin Care</a></li>
+          <li><a href="#">Retoque</a></li>
+        </ul>
+      </li>
+      <li><a href="nosotros.html">Acerca de</a></li>
+      <li><a href="agendar.html">Agendar</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="pages/blog.html">Blog</a></li>
+    `;
+
+    userNav.innerHTML = `
+      <button class="btn-acceder" onclick="window.location.href='login.html'">Acceder</button>
+    `;
+  } else if (user.tipo === "admin") {
+    // 🛠️ Usuario Administrador
+    navLinks.innerHTML = `
+      <li class="dropdown">
+        <a href="#">Servicios ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="cortes.html">Cortes</a></li>
+          <li><a href="peinados.html">Peinados</a></li>
+        </ul>
+      </li>
+      <li><a href="adminServicios.html">Gestión de Servicios</a></li>
+      <li><a href="adminCitas.html">Gestión de Citas</a></li>
+      <li><a href="adminUsuarios.html">Gestión de Usuarios</a></li>
+    `;
+
+    userNav.innerHTML = `
+      <span style="color:white; margin-left: 4px; font-weight: bold;">Bienvenido ${user.tipo} ${user.nombre} </span>
+    `;
+  } else {
+    // 👤 Usuario Cliente
+    navLinks.innerHTML = `
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li class="dropdown">
+        <a href="#">Servicios ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="cortes.html">Cortes</a></li>
+          <li><a href="peinados.html">Peinados</a></li>
+          <li><a href="#">Maquillaje</a></li>
+          <li><a href="#">Manicure</a></li>
+          <li><a href="#">Pedicure</a></li>
+          <li><a href="#">Skin Care</a></li>
+          <li><a href="#">Retoque</a></li>
+        </ul>
+      </li>
+      <li><a href="nosotros.html">Acerca de</a></li>
+      <li><a href="agendar.html">Agendar</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="pages/blog.html">Blog</a></li>
+    `;
+
+    userNav.innerHTML = `
+      <span style="color:white; margin-left: 4px; font-weight: bold;">Bienvenido ${user.nombre}</span>
+    `;
+  }
+</script>
+
+  <script>
+  const usuario = JSON.parse(localStorage.getItem('usuario'));
+
+  // Verifica si hay sesión y si el tipo es 'admin'
+  if (!usuario || usuario.tipo !== "admin") {
+    alert("Acceso denegado. Esta sección es solo para administradores.");
+    window.location.href = "index.html";
+  }
+</script>
+
+
+  <h1>Gestor de Servicios</h1>
+
+  <form action="datos/ServicioDao.php" method="POST" enctype="multipart/form-data">
+    <label for="tipo">Tipo de Servicio:</label>
+    <select name="tipo" id="tipo" required>
+      <option value="Corte">Corte</option>
+      <option value="Peinado">Peinado</option>
+      <option value="Maquillaje">Maquillaje</option>
+      <option value="Manicure">Manicure</option>
+      <option value="Pedicure">Pedicure</option>
+      <option value="Skin Care">Skin Care</option>
+      <option value="Retoque">Retoque</option>
+    </select>
+
+    <label for="nombre">Nombre del Servicio:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion" rows="3" required></textarea>
+
+    <label for="precio">Precio ($MXN):</label>
+    <input type="number" id="precio" name="precio" step="0.01" required>
+
+    <label for="tiempo">Tiempo (horas):</label>
+    <input type="number" id="tiempo" name="tiempo" step="0.1" required>
+
+    <label for="imagen">Imagen del Servicio:</label>
+    <input type="file" id="imagen" name="imagen" accept="image/*" required>
+
+    <button type="submit">Guardar Servicio</button>
+  </form>
+
+  <div id="servicios-categorias"></div>
+
+  <!-- Script para cargar servicios por categoría -->
+  <script src="js/adminServicios.js"></script>
+
+</body>
+</html>

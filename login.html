@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="css/login.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-icon">
+        <span class="material-symbols-outlined">lock</span>
+      </div>
+      <h2>Iniciar Sesión</h2>
+
+      <form id="formLogin" method="POST">
+        <div class="campo">
+          <label for="usuario">Usuario:</label>
+          <input type="text" id="usuario" name="usuario" required>
+        </div>
+
+        <div class="campo">
+          <label for="contrasenia">Contraseña:</label>
+          <input type="password" id="contrasenia" name="contrasenia" required>
+        </div>
+
+        <button type="submit" class="btn-ingresar">Ingresar</button>
+
+        <div class="login-links">
+          <a href="registro.html">¿No tienes cuenta? Regístrate</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/login.js"></script>
+</body>
+</html>

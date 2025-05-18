@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shine Beauty</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/catalogo.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <ul class="nav-links" id="navLinks">
+    <!-- Aquí se renderizarán los enlaces dependiendo del rol -->
+  </ul>
+
+  <div class="user-profile" id="userNav">
+    <!-- Aquí va el botón de acceder o el nombre de usuario -->
+  </div>
+</nav>
+
+<script>
+  const user = JSON.parse(localStorage.getItem('usuario'));
+  const navLinks = document.getElementById('navLinks');
+  const userNav = document.getElementById('userNav');
+
+  if (!user || !user.Usuario) {
+    // ✅ No hay sesión iniciada
+    navLinks.innerHTML = `
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li class="dropdown">
+        <a href="#">Servicios ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="cortes.html">Cortes</a></li>
+          <li><a href="peinados.html">Peinados</a></li>
+          <li><a href="#">Maquillaje</a></li>
+          <li><a href="#">Manicure</a></li>
+          <li><a href="#">Pedicure</a></li>
+          <li><a href="#">Skin Care</a></li>
+          <li><a href="#">Retoque</a></li>
+        </ul>
+      </li>
+      <li><a href="nosotros.html">Acerca de</a></li>
+      <li><a href="agendar.html">Agendar</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="pages/blog.html">Blog</a></li>
+    `;
+
+    userNav.innerHTML = `
+      <button class="btn-acceder" onclick="window.location.href='login.html'">Acceder</button>
+    `;
+  } else if (user.tipo === "admin") {
+    // 🛠️ Usuario Administrador
+    navLinks.innerHTML = `
+      <li class="dropdown">
+        <a href="#">Servicios ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="cortes.html">Cortes</a></li>
+          <li><a href="peinados.html">Peinados</a></li>
+        </ul>
+      </li>
+      <li><a href="adminServicios.html">Gestión de Servicios</a></li>
+      <li><a href="adminCitas.html">Gestión de Citas</a></li>
+      <li><a href="adminUsuarios.html">Gestión de Usuarios</a></li>
+    `;
+
+    userNav.innerHTML = `
+      <span style="color:white; margin-left: 4px; font-weight: bold;">Bienvenido ${user.tipo} ${user.nombre} </span>
+    `;
+  } else {
+    // 👤 Usuario Cliente
+    navLinks.innerHTML = `
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li class="dropdown">
+        <a href="#">Servicios ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="cortes.html">Cortes</a></li>
+          <li><a href="peinados.html">Peinados</a></li>
+          <li><a href="#">Maquillaje</a></li>
+          <li><a href="#">Manicure</a></li>
+          <li><a href="#">Pedicure</a></li>
+          <li><a href="#">Skin Care</a></li>
+          <li><a href="#">Retoque</a></li>
+        </ul>
+      </li>
+      <li><a href="nosotros.html">Acerca de</a></li>
+      <li><a href="agendar.html">Agendar</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="pages/blog.html">Blog</a></li>
+    `;
+
+    userNav.innerHTML = `
+      <span style="color:white; margin-left: 4px; font-weight: bold;">Bienvenido ${user.nombre}</span>
+    `;
+  }
+</script>
+
+
+  <header class="banner">
+    <div class="banner-content">
+      <h1>Shine Beauty</h1>
+      <p>Realza tu belleza con nuestros servicios profesionales</p>
+      <a href="agendar.html" class="btn-agendar">Agendar Cita</a>
+    </div>
+  </header>
+
+  <section class="galeria">
+    <div class="contenedor-imagenes" id="contenedor-imagenes">
+      <a href="#"><img src="img/cabello/peinado1.jpg" alt="Peinado 1"></a>
+      <a href="#"><img src="img/cabello/peinado2.jpg" alt="Peinado 2"></a>
+      <a href="#"><img src="img/cabello/peinado3.jpg" alt="Peinado 3"></a>
+      <a href="#"><img src="img/cabello/peinado4.png" alt="Peinado 4"></a>
+      <a href="#"><img src="img/cabello/peinado5.jpg" alt="Peinado 5"></a>
+      <a href="#"><img src="img/cabello/peinado6.jpg" alt="Peinado 6"></a>
+    </div>
+  </section>
+
+  <section class="productos-estrella">
+    <h2><span>Nuestros productos Estrella</span></h2>
+    <div class="productos-contenedor">
+      <div class="producto">
+        <img src="img/productosEstrella/authBeauty.jpg" alt="Authentic Beauty">
+        <h3>Authentic Beauty</h3>
+        <p>Precio: 800 MXN</p>
+      </div>
+      <div class="producto">
+        <img src="img/productosEstrella/Krastase.jpg" alt="Kerastase">
+        <h3>Kerastase</h3>
+        <p>Precio: 1100 MXN</p>
+      </div>
+      <div class="producto">
+        <img src="img/productosEstrella/davines.jpg" alt="Davines">
+        <h3>Davines</h3>
+        <p>Precio: 2500 MXN</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonios">
+    <h2>Testimonios</h2>
+    <div class="testimonios-contenedor">
+      <div class="testimonio">
+        <img src="img/testimonios/andrea.png" alt="Andrea">
+        <h3>-Andrea</h3>
+        <p>“Personalizado y profesional”</p>
+      </div>
+      <div class="testimonio">
+        <img src="img/testimonios/liz.png" alt="Liz">
+        <h3>-Liz</h3>
+        <p>“Acogedor elegante y profesional”</p>
+      </div>
+      <div class="testimonio">
+        <img src="img/testimonios/paola.png" alt="Paola">
+        <h3>-Paola</h3>
+        <p>“Calidad precio los mejores sin duda”</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="horarios">
+    <h2>HORARIOS <br> <span>DE TRABAJO</span></h2>
+    <div class="horarios-contenedor">
+      <div class="dia">Lunes - Viernes</div>
+      <div class="hora">8:00 - 20:00</div>
+
+      <div class="dia">Sábado</div>
+      <div class="hora">8:00 - 17:00</div>
+
+      <div class="dia">Domingo</div>
+      <div class="hora">Cerrado</div>
+    </div>
+  </section>
+
+  <section class="ubicacion">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14984.48918342472!2d-101.17306214999999!3d20.128944899999972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842cfac86f0e2fdd%3A0x6d3f1d4dee8f522!2sC.%20Ej%C3%A9rcito%20Nacional%209%2C%20Zona%20Centro%2C%2038980%20Uriangato%2C%20Gto.!5e0!3m2!1ses-419!2smx!4v1741818899884!5m2!1ses-419!2smx" 
+      width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="social-icons">
+        <a href="#"><img src="img/icons/instagram.svg" alt="Instagram"></a>
+        <a href="#"><img src="img/icons/facebook.svg" alt="Facebook"></a>
+      </div>
+      <p>© Copyright 2025 <strong>SHINE BEAUTY STUDIOS</strong></p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam...</p>
+    </div>
+  </footer>
+
+</body>
+</html>
