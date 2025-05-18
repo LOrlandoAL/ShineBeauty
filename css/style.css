@@ -20,7 +20,7 @@ body {
     position: relative;
     width: 100%;
     height: 60vh;
-    background-image: url('../img/props/banner.jpg'); /* Imagen del banner */
+    background-image: url('../img/banner.jpg'); /* Imagen del banner */
     background-size: cover;
     background-position: center;
     display: flex;
@@ -585,7 +585,7 @@ img{
 
 .Nosotros .img {
     flex: 1;
-    background-image: url('../img/props/nosotros.png');
+    background-image: url('../img/nosotros.png');
     background-size: cover;
     background-position: center;
     min-height: 250px;
@@ -633,7 +633,7 @@ img{
 
 .equipo .imgE {
     flex: 1;
-    background-image: url('../img/props/Equipo.png');
+    background-image: url('../img/Equipo.png');
     background-size: cover;
     background-position: center;
     min-height: 300px;

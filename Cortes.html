@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catálogo de Peinados</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/catalogo.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Contenedor para cargar dinámicamente el navbar -->
+  <div id="navbar-container"></div>
+
+  <main class="catalogo-servicios">
+    <h1>Catálogo de Cortes</h1>
+
+    <div id="servicios-lista" class="servicios-grid">
+      <!-- Servicios dinámicos filtrados por categoría -->
+    </div>
+  </main>
+
+  <script>
+    // Carga dinámica del navbar
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-container').innerHTML = data;
+      });
+
+    // Define la categoría actual para el catálogo
+    const categoriaActual = 'corte'; // Define la categoría que corresponda
+  </script>
+
+  <script src="js/catalogo.js"></script>
+</body>
+</html>

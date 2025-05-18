@@ -75,3 +75,11 @@ SELECT * FROM usuario;
 SELECT * FROM citas;
 SELECT * FROM servicios;
 SELECT idServicios, nombre FROM servicios;
+
+ALTER TABLE usuario
+ADD COLUMN tipo ENUM('admin', 'cliente') NOT NULL DEFAULT 'cliente';
+
+UPDATE usuario
+SET tipo = 'admin'
+WHERE Usuario = 'Admin';
+
