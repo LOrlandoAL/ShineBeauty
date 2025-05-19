@@ -62,6 +62,50 @@
   .user-dropdown:hover .user-dropdown-content {
     display: block;
   }
+
+  .galeria {
+  padding: 40px 0;
+  background-color: var(--color-muy-claro);
+  overflow: hidden;
+}
+
+.carrusel-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.carrusel {
+  display: flex;
+  animation: deslizar 30s linear infinite;
+  width: max-content;
+}
+
+.carrusel img {
+  width: 250px;
+  height: 300px;
+  object-fit: cover;
+  margin: 0 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.carrusel img:hover {
+  transform: scale(1.05);
+}
+
+@keyframes deslizar {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+  
 </style>
 
 <script>
@@ -88,7 +132,7 @@
       <li><a href="nosotros.html">Acerca de</a></li>
       <li><a href="agendar.html">Agendar</a></li>
       <li><a href="contacto.html">Contacto</a></li>
-      <li><a href="pages/blog.html">Blog</a></li>
+      <li><a href="blog.html">Blog</a></li>
     `;
 
     userNav.innerHTML = `
@@ -126,7 +170,7 @@
         <li><a href="nosotros.html">Acerca de</a></li>
         <li><a href="agendar.html">Agendar</a></li>
         <li><a href="contacto.html">Contacto</a></li>
-        <li><a href="pages/blog.html">Blog</a></li>
+        <li><a href="blog.html">Blog</a></li>
       `;
     }
 
@@ -157,16 +201,24 @@
     </div>
   </header>
 
-  <section class="galeria">
-    <div class="contenedor-imagenes" id="contenedor-imagenes">
-      <a href="#"><img src="img/cabello/peinado1.jpg" alt="Peinado 1"></a>
-      <a href="#"><img src="img/cabello/peinado2.jpg" alt="Peinado 2"></a>
-      <a href="#"><img src="img/cabello/peinado3.jpg" alt="Peinado 3"></a>
-      <a href="#"><img src="img/cabello/peinado4.png" alt="Peinado 4"></a>
-      <a href="#"><img src="img/cabello/peinado5.jpg" alt="Peinado 5"></a>
-      <a href="#"><img src="img/cabello/peinado6.jpg" alt="Peinado 6"></a>
+<section class="galeria">
+  <div class="carrusel-wrapper">
+    <div class="carrusel" id="galeriaCarrusel">
+      <img src="img/cabello/peinado1.jpg" alt="Peinado 1" />
+      <img src="img/cabello/peinado2.jpg" alt="Peinado 2" />
+      <img src="img/cabello/peinado3.jpg" alt="Peinado 3" />
+      <img src="img/cabello/peinado4.png" alt="Peinado 4" />
+      <img src="img/cabello/peinado5.jpg" alt="Peinado 5" />
+      <img src="img/cabello/peinado6.jpg" alt="Peinado 6" />
+      <img src="img/cabello/peinado1.jpg" alt="Peinado 1" />
+      <img src="img/cabello/peinado2.jpg" alt="Peinado 2" />
+      <img src="img/cabello/peinado3.jpg" alt="Peinado 3" />
+      <img src="img/cabello/peinado4.png" alt="Peinado 4" />
+      <img src="img/cabello/peinado5.jpg" alt="Peinado 5" />
+      <img src="img/cabello/peinado6.jpg" alt="Peinado 6" />
     </div>
-  </section>
+  </div>
+</section>
 
   <section class="productos-estrella">
     <h2><span>Nuestros productos Estrella</span></h2>

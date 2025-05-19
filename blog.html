@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Catálogo de Peinados</title>
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/catalogo.css" />
+  <title>Blog de Belleza</title>
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/blog.css" />
 </head>
 <body>
 
@@ -150,20 +148,42 @@
   }
 </script>
 
-  <main class="catalogo-servicios">
-    <h1>Catálogo de Cortes</h1>
+<main class="blog-contenedor">
+  <h1>Blog</h1>
+  <div id="entradas-container" class="entradas-grid">
+    <!-- Aquí se insertarán dinámicamente las entradas -->
+  </div>
+</main>
 
-    <div id="servicios-lista" class="servicios-grid">
-      <!-- Servicios dinámicos filtrados por categoría -->
-    </div>
-  </main>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("datos/ObtenerEntradas.php")
+    .then(res => res.json())
+    .then(entradas => {
+      const container = document.getElementById("entradas-container");
+      if (entradas.length === 0) {
+        container.innerHTML = "<p>No hay publicaciones disponibles aún.</p>";
+        return;
+      }
 
-  <script>
-    // Define la categoría actual para el catálogo
-    const categoriaActual = 'corte'; // Define la categoría que corresponda
-  </script>
+      entradas.forEach(entrada => {
+        const card = document.createElement("div");
+        card.classList.add("entrada-card");
 
-  <script src="js/catalogo.js"></script>
-  <script src="js/servicio_agenda_local.js"></script>
+        card.innerHTML = `
+          <img src="data:image/jpeg;base64,${entrada.imagen}" alt="${entrada.titulo}">
+          <div class="entrada-info">
+            <h3>${entrada.titulo}</h3>
+            <small>${new Date(entrada.fecha).toLocaleDateString()}</small>
+            <p>${entrada.resumen}</p>
+            <a href="verEntrada.html?id=${entrada.id}" class="btn-leer">Leer más</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    });
+});
+</script>
+
 </body>
 </html>
