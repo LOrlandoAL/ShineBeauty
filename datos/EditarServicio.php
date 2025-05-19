@@ -1,76 +1,42 @@
 <?php
-// Mostrar errores para depuración (puedes quitar en producción)
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+include "Conexion.php";
+$db = new Conexion();
+$conn = $db->obtenerConexion();
 
-header('Content-Type: application/json');
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $id = $_GET['id'];
+    $tipo = $_POST['tipo'];
+    $nombre = $_POST['nombre'];
+    $descripcion = $_POST['descripcion'];
+    $precio = $_POST['precio'];
+    $tiempo = $_POST['tiempo'];
 
-// Incluir conexión
-require_once 'Conexion.php';
-
-// Verificar que venga el ID en la URL
-if (!isset($_GET['id'])) {
-    echo json_encode(['mensaje' => 'Error: Falta el ID del servicio.']);
-    exit;
-}
-
-$id = $_GET['id'];
-
-// Verificar que los datos del formulario estén completos
-if (empty($_POST['tipo']) || empty($_POST['nombre']) || empty($_POST['descripcion']) || empty($_POST['precio']) || empty($_POST['tiempo'])) {
-    echo json_encode(['mensaje' => 'Error: Todos los campos son obligatorios.']);
-    exit;
-}
-
-$tipo = $_POST['tipo'];
-$nombre = $_POST['nombre'];
-$descripcion = $_POST['descripcion'];
-$precio = $_POST['precio'];
-$tiempo = $_POST['tiempo'];
-
-// Conectarse a la base de datos
-try {
-    $conexionDB = new Conexion();
-    $pdo = Conexion::obtenerConexion();
-
-    // Verificamos si se envió una nueva imagen
+    // Verificar si se ha subido una nueva imagen
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-        $imagenTmp = $_FILES['imagen']['tmp_name'];
-        $nombreImagen = basename($_FILES['imagen']['name']);
-        $rutaDestino = __DIR__ . '/../uploads/' . basename($nombreImagen);
+        $imagenTemp = $_FILES['imagen']['tmp_name'];
+        $imagenBinaria = file_get_contents($imagenTemp);
 
-        // Mover la imagen a la carpeta uploads
-        if (move_uploaded_file($imagenTmp, $rutaDestino)) {
-            // Actualizar todos los campos incluyendo la imagen
-            $stmt = $pdo->prepare("UPDATE servicios SET tipo = :tipo, nombre = :nombre, Servicioscol = :descripcion, precio = :precio, tiempo = :tiempo, imagen = :imagen WHERE idServicios = :id");
-            $stmt->bindParam(':imagen', $nombreImagen, PDO::PARAM_STR);
-        } else {
-            echo json_encode(['mensaje' => 'Error al subir la nueva imagen.']);
-            exit;
-        }
+        $sql = "UPDATE servicios SET Tipo = :tipo, nombre = :nombre, descripcion = :descripcion, precio = :precio, tiempo = :tiempo, imagen = :imagen WHERE idServicios = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':imagen', $imagenBinaria, PDO::PARAM_LOB);
     } else {
-        // Actualizar todos los campos excepto la imagen
-        $stmt = $pdo->prepare("UPDATE servicios SET tipo = :tipo, nombre = :nombre, Servicioscol = :descripcion, precio = :precio, tiempo = :tiempo WHERE idServicios = :id");
+        // No se subió imagen
+        $sql = "UPDATE servicios SET Tipo = :tipo, nombre = :nombre, descripcion = :descripcion, precio = :precio, tiempo = :tiempo WHERE idServicios = :id";
+        $stmt = $conn->prepare($sql);
     }
 
-    // Bind de parámetros generales
-    $stmt->bindParam(':tipo', $tipo, PDO::PARAM_STR);
-    $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-    $stmt->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
-    $stmt->bindParam(':precio', $precio, PDO::PARAM_STR);
-    $stmt->bindParam(':tiempo', $tiempo, PDO::PARAM_STR);
+    // Parámetros comunes
+    $stmt->bindParam(':tipo', $tipo);
+    $stmt->bindParam(':nombre', $nombre);
+    $stmt->bindParam(':descripcion', $descripcion);
+    $stmt->bindParam(':precio', $precio);
+    $stmt->bindParam(':tiempo', $tiempo);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-    // Ejecutar la consulta
     if ($stmt->execute()) {
-        echo json_encode([
-            'mensaje' => 'Servicio actualizado correctamente.',
-            'redirect' => '../admin.html' // <--- Ruta a donde quieres redirigir
-        ]);
+        echo "<script>alert('✅ Servicio actualizado correctamente'); window.location.href='../adminServicios.html';</script>";
     } else {
-        echo json_encode(['mensaje' => 'Error al actualizar el servicio.']);
+        echo "<script>alert('❌ Error al actualizar el servicio'); window.history.back();</script>";
     }
-
-} catch (Exception $e) {
-    echo json_encode(['mensaje' => 'Error: ' . $e->getMessage()]);
 }
+?>

@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           // Redirige según el tipo de usuario
           if (data.usuario.tipo === "admin") {
-            window.location.href = "admin.html";
+            window.location.href = "adminServicios.html";
           } else {
             window.location.href = "index.html";
           }

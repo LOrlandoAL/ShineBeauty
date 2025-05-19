@@ -10,7 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $db = new Conexion();
         $conn = $db->obtenerConexion();
 
-        $stmt = $conn->prepare("SELECT idUsuario, Usuario, nombre, tipo FROM usuario WHERE Usuario = :usuario AND contrasenia = :contrasenia");
+        // 🔄 Se incluyen también correo_electronico y telefono
+        $stmt = $conn->prepare("SELECT idUsuario, Usuario, nombre, tipo, correo_electronico, telefono FROM usuario WHERE Usuario = :usuario AND contrasenia = :contrasenia");
         $stmt->bindParam(":usuario", $usuario);
         $stmt->bindParam(":contrasenia", $password);
         $stmt->execute();
@@ -25,7 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     "id" => $user["idUsuario"],
                     "nombre" => $user["nombre"],
                     "Usuario" => $user["Usuario"],
-                    "tipo" => $user["tipo"]
+                    "tipo" => $user["tipo"],
+                    "correo_electronico" => $user["correo_electronico"],
+                    "telefono" => $user["telefono"]
                 ]
             ]);
         } else {

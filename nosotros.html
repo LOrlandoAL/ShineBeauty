@@ -11,13 +11,57 @@
 <body>
 <nav class="navbar">
   <ul class="nav-links" id="navLinks">
-    <!-- Aquí se renderizarán los enlaces dependiendo del rol -->
+    <!-- Aquí se renderarán los enlaces dependiendo del rol -->
   </ul>
 
   <div class="user-profile" id="userNav">
-    <!-- Aquí va el botón de acceder o el nombre de usuario -->
+    <!-- Aquí va el botón de acceder o el menú de usuario -->
   </div>
 </nav>
+
+<style>
+  .user-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .user-dropdown .dropdown-btn {
+    background-color: var(--color-medio);
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .user-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .user-dropdown-content a {
+    color: black;
+    padding: 10px 12px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .user-dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+
+  .user-dropdown:hover .user-dropdown-content {
+    display: block;
+  }
+</style>
 
 <script>
   const user = JSON.parse(localStorage.getItem('usuario'));
@@ -49,51 +93,61 @@
     userNav.innerHTML = `
       <button class="btn-acceder" onclick="window.location.href='login.html'">Acceder</button>
     `;
-  } else if (user.tipo === "admin") {
-    // 🛠️ Usuario Administrador
-    navLinks.innerHTML = `
-      <li class="dropdown">
-        <a href="#">Servicios ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="cortes.html">Cortes</a></li>
-          <li><a href="peinados.html">Peinados</a></li>
-        </ul>
-      </li>
-      <li><a href="adminServicios.html">Gestión de Servicios</a></li>
-      <li><a href="adminCitas.html">Gestión de Citas</a></li>
-      <li><a href="adminUsuarios.html">Gestión de Usuarios</a></li>
-    `;
-
-    userNav.innerHTML = `
-      <span style="color:white; margin-left: 4px; font-weight: bold;">Bienvenido ${user.tipo} ${user.nombre} </span>
-    `;
   } else {
-    // 👤 Usuario Cliente
-    navLinks.innerHTML = `
-      <li><a href="index.html" class="active">Inicio</a></li>
-      <li class="dropdown">
-        <a href="#">Servicios ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="cortes.html">Cortes</a></li>
-          <li><a href="peinados.html">Peinados</a></li>
-          <li><a href="#">Maquillaje</a></li>
-          <li><a href="#">Manicure</a></li>
-          <li><a href="#">Pedicure</a></li>
-          <li><a href="#">Skin Care</a></li>
-          <li><a href="#">Retoque</a></li>
-        </ul>
-      </li>
-      <li><a href="nosotros.html">Acerca de</a></li>
-      <li><a href="agendar.html">Agendar</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-      <li><a href="pages/blog.html">Blog</a></li>
-    `;
+    if (user.tipo === "admin") {
+      navLinks.innerHTML = `
+        <li class="dropdown">
+          <a href="#">Servicios ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="cortes.html">Cortes</a></li>
+            <li><a href="peinados.html">Peinados</a></li>
+          </ul>
+        </li>
+        <li><a href="adminServicios.html">Gestión de Servicios</a></li>
+        <li><a href="adminCitas.html">Gestión de Citas</a></li>
+        <li><a href="adminUsuarios.html">Gestión de Usuarios</a></li>
+      `;
+    } else {
+      navLinks.innerHTML = `
+        <li><a href="index.html" class="active">Inicio</a></li>
+        <li class="dropdown">
+          <a href="#">Servicios ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="cortes.html">Cortes</a></li>
+            <li><a href="peinados.html">Peinados</a></li>
+            <li><a href="#">Maquillaje</a></li>
+            <li><a href="#">Manicure</a></li>
+            <li><a href="#">Pedicure</a></li>
+            <li><a href="#">Skin Care</a></li>
+            <li><a href="#">Retoque</a></li>
+          </ul>
+        </li>
+        <li><a href="nosotros.html">Acerca de</a></li>
+        <li><a href="agendar.html">Agendar</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="pages/blog.html">Blog</a></li>
+      `;
+    }
 
+    // Menú desplegable con botón de logout
     userNav.innerHTML = `
-      <span style="color:white; margin-left: 4px; font-weight: bold;">Bienvenido ${user.nombre}</span>
+      <div class="user-dropdown">
+        <button class="dropdown-btn">${user.nombre}</button>
+        <div class="user-dropdown-content">
+          <a href="#" onclick="cerrarSesion()">Cerrar sesión</a>
+        </div>
+      </div>
     `;
   }
+
+  function cerrarSesion() {
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("serviciosAgenda");
+    alert("Sesión cerrada correctamente");
+    window.location.href = "index.html";
+  }
 </script>
+
 
     <!-- CONTENIDO PRINCIPAL -->
     <main>

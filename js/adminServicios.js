@@ -92,9 +92,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function editarServicio(servicio) {
-    const tipoSelect = document.getElementById("tipo");
-const optionToSelect = Array.from(tipoSelect.options).find(option => 
+function editarServicio(servicio) {
+  const tipoSelect = document.getElementById("tipo");
+  const optionToSelect = Array.from(tipoSelect.options).find(option => 
   option.value && servicio.tipo && option.value.trim().toLowerCase() === servicio.tipo.trim().toLowerCase()
 );
 
@@ -106,7 +106,7 @@ if (optionToSelect) {
 
 
     document.getElementById("nombre").value = servicio.nombre;
-    document.getElementById("descripcion").value = servicio.Servicioscol;
+    document.getElementById("descripcion").value = servicio.descripcion;
     document.getElementById("precio").value = servicio.precio;
     document.getElementById("tiempo").value = servicio.tiempo;
 
@@ -114,6 +114,11 @@ if (optionToSelect) {
     form.action = `datos/EditarServicio.php?id=${servicio.idServicios}`;
 
     form.scrollIntoView({ behavior: "smooth" });
+
+    const submitBtn = document.querySelector("form button[type=submit]");
+    submitBtn.textContent = "Actualizar Servicio";
+    submitBtn.style.backgroundColor = "#ffaa00"; // opcional
+    <button type="reset" onclick="location.reload()">Cancelar edición</button>
   }
 
   cargarServicios();

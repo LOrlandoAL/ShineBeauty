@@ -4,19 +4,119 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Agendar Cita</title>
-    <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/agenda.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .resumen-servicio {
+      display: flex;
+      align-items: flex-start;
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      gap: 10px;
+    }
+    .resumen-servicio img {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .resumen-detalle {
+      flex: 1;
+    }
+    .resumen-detalle h4 {
+      margin: 0 0 5px;
+      font-size: 1rem;
+    }
+    .resumen-detalle p {
+      font-size: 0.85rem;
+      margin: 2px 0;
+      color: #555;
+    }
+    .bloque-cita {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .bloque-cita input[type=date], .bloque-cita select {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .datos-usuario {
+      margin-top: 30px;
+    }
+    .datos-usuario input {
+      display: block;
+      margin-bottom: 10px;
+      padding: 10px;
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <ul class="nav-links" id="navLinks">
-    <!-- Aquí se renderizarán los enlaces dependiendo del rol -->
+    <!-- Aquí se renderarán los enlaces dependiendo del rol -->
   </ul>
 
   <div class="user-profile" id="userNav">
-    <!-- Aquí va el botón de acceder o el nombre de usuario -->
+    <!-- Aquí va el botón de acceder o el menú de usuario -->
   </div>
 </nav>
+
+<style>
+  .user-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .user-dropdown .dropdown-btn {
+    background-color: var(--color-medio);
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .user-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .user-dropdown-content a {
+    color: black;
+    padding: 10px 12px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .user-dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+
+  .user-dropdown:hover .user-dropdown-content {
+    display: block;
+  }
+</style>
 
 <script>
   const user = JSON.parse(localStorage.getItem('usuario'));
@@ -48,123 +148,127 @@
     userNav.innerHTML = `
       <button class="btn-acceder" onclick="window.location.href='login.html'">Acceder</button>
     `;
-  } else if (user.tipo === "admin") {
-    // 🛠️ Usuario Administrador
-    navLinks.innerHTML = `
-      <li class="dropdown">
-        <a href="#">Servicios ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="cortes.html">Cortes</a></li>
-          <li><a href="peinados.html">Peinados</a></li>
-        </ul>
-      </li>
-      <li><a href="adminServicios.html">Gestión de Servicios</a></li>
-      <li><a href="adminCitas.html">Gestión de Citas</a></li>
-      <li><a href="adminUsuarios.html">Gestión de Usuarios</a></li>
-    `;
-
-    userNav.innerHTML = `
-      <span style="color:white; margin-left: 4px; font-weight: bold;">Bienvenido ${user.tipo} ${user.nombre} </span>
-    `;
   } else {
-    // 👤 Usuario Cliente
-    navLinks.innerHTML = `
-      <li><a href="index.html" class="active">Inicio</a></li>
-      <li class="dropdown">
-        <a href="#">Servicios ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="cortes.html">Cortes</a></li>
-          <li><a href="peinados.html">Peinados</a></li>
-          <li><a href="#">Maquillaje</a></li>
-          <li><a href="#">Manicure</a></li>
-          <li><a href="#">Pedicure</a></li>
-          <li><a href="#">Skin Care</a></li>
-          <li><a href="#">Retoque</a></li>
-        </ul>
-      </li>
-      <li><a href="nosotros.html">Acerca de</a></li>
-      <li><a href="agendar.html">Agendar</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-      <li><a href="pages/blog.html">Blog</a></li>
-    `;
+    if (user.tipo === "admin") {
+      navLinks.innerHTML = `
+        <li class="dropdown">
+          <a href="#">Servicios ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="cortes.html">Cortes</a></li>
+            <li><a href="peinados.html">Peinados</a></li>
+          </ul>
+        </li>
+        <li><a href="adminServicios.html">Gestión de Servicios</a></li>
+        <li><a href="adminCitas.html">Gestión de Citas</a></li>
+        <li><a href="adminUsuarios.html">Gestión de Usuarios</a></li>
+      `;
+    } else {
+      navLinks.innerHTML = `
+        <li><a href="index.html" class="active">Inicio</a></li>
+        <li class="dropdown">
+          <a href="#">Servicios ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="cortes.html">Cortes</a></li>
+            <li><a href="peinados.html">Peinados</a></li>
+            <li><a href="#">Maquillaje</a></li>
+            <li><a href="#">Manicure</a></li>
+            <li><a href="#">Pedicure</a></li>
+            <li><a href="#">Skin Care</a></li>
+            <li><a href="#">Retoque</a></li>
+          </ul>
+        </li>
+        <li><a href="nosotros.html">Acerca de</a></li>
+        <li><a href="agendar.html">Agendar</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="pages/blog.html">Blog</a></li>
+      `;
+    }
 
+    // Menú desplegable con botón de logout
     userNav.innerHTML = `
-      <span style="color:white; margin-left: 4px; font-weight: bold;">Bienvenido ${user.nombre}</span>
+      <div class="user-dropdown">
+        <button class="dropdown-btn">${user.nombre}</button>
+        <div class="user-dropdown-content">
+          <a href="#" onclick="cerrarSesion()">Cerrar sesión</a>
+        </div>
+      </div>
     `;
+  }
+
+  function cerrarSesion() {
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("serviciosAgenda");
+    alert("Sesión cerrada correctamente");
+    window.location.href = "index.html";
   }
 </script>
 
-
+<main style="padding: 20px; max-width: 700px; margin: auto;">
+  <h2 style="font-family: 'serif'; font-style: italic; border-bottom: 1px solid #ccc; padding-bottom: 5px;">Resumen</h2>
   <form id="formCita" method="POST" action="datos/guardar_cita.php">
-    <div class="campo">
-      <label for="nombre">Nombre completo:</label>
-      <input type="text" id="nombre" name="nombre" required>
+    <div class="datos-usuario">
+      <input type="text" id="nombre" name="nombre" placeholder="Nombre Completo" required>
+      <input type="tel" id="telefono" name="telefono" placeholder="Numero de Telefono" maxlength="10" required pattern="[0-9]{10}">
+      <input type="email" id="correo" name="correo" placeholder="Correo electronico" required>
     </div>
-
-    <div class="campo">
-      <label for="telefono">Teléfono:</label>
-      <input type="tel" id="telefono" name="telefono" maxlength="10" required pattern="[0-9]{10}">
-    </div>
-
-    <div class="campo">
-      <label for="correo">Correo electrónico:</label>
-      <input type="email" id="correo" name="correo" required>
-    </div>
-
-    <div id="bloques-citas">
-      <!-- Aquí se insertarán dinámicamente los servicios con fecha y hora -->
-    </div>
-
-    <button type="submit" class="btn-agendar">Confirmar Cita</button>
+    <div id="preview-servicios"></div>
+    <button type="submit" class="btn-agendar" style="margin-top: 20px;">Confirmar Cita</button>
   </form>
-  </main>
+</main>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const usuario = JSON.parse(localStorage.getItem("usuario"));
-      const seleccionados = JSON.parse(localStorage.getItem("serviciosAgenda")) || [];
-      const contenedor = document.getElementById("bloques-citas");
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    const idsSeleccionados = JSON.parse(localStorage.getItem("serviciosAgenda")) || [];
 
-      if (usuario) {
-        document.getElementById("nombre").value = usuario.nombre || "";
-        document.getElementById("telefono").value = usuario.telefono || "";
-        document.getElementById("correo").value = usuario.correo_electronico || "";
-      }
+    const nombreInput = document.getElementById("nombre");
+    const telInput = document.getElementById("telefono");
+    const correoInput = document.getElementById("correo");
+    const preview = document.getElementById("preview-servicios");
 
-      fetch("datos/ObtenerServiciosPorIds.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ids: seleccionados })
-      })
+    if (usuario) {
+      nombreInput.value = usuario.nombre || "";
+      telInput.value = usuario.telefono || "";
+      correoInput.value = usuario.correo_electronico || "";
+    }
+
+    fetch("datos/ObtenerServiciosPorIds.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ids: idsSeleccionados })
+    })
       .then(res => res.json())
       .then(servicios => {
-        contenedor.innerHTML = "";
-        servicios.forEach((servicio, i) => {
-          const div = document.createElement("div");
-          div.classList.add("bloque-cita");
-          div.innerHTML = `
-            <input type="hidden" name="citas[${i}][idServicio]" value="${servicio.idServicios}">
-            <div class="campo">
-              <label>Fecha para ${servicio.nombre}:</label>
-              <input type="date" name="citas[${i}][fecha]" required>
-            </div>
-            <div class="campo">
-              <label>Hora:</label>
-              <select name="citas[${i}][hora]" required>
-                ${Array.from({length: 13}, (_, h) => {
-                  const hora = `${(h+6).toString().padStart(2, '0')}:00`;
-                  return `<option value="${hora}">${hora}</option>`;
-                }).join('')}
-              </select>
+        preview.innerHTML = "";
+        servicios.forEach((s, i) => {
+          const card = document.createElement("div");
+          card.classList.add("resumen-servicio");
+          card.innerHTML = `
+            <img src="${s.imagen}" alt="${s.nombre}">
+            <div class="resumen-detalle">
+              <h4>${s.nombre}</h4>
+              <p><i class="fa-solid fa-dollar-sign"></i> Precio: $${s.precio} MXN</p>
+              <p><i class="fa-regular fa-clock"></i> Tiempo: ${s.tiempo} hr</p>
+              <p>${s.descripcion}</p>
+              <div class="bloque-cita">
+                <input type="hidden" name="idServicio[]" value="${s.idServicios}">
+                <label>Fecha:</label>
+                <input type="date" name="fecha[]" required>
+                <label>Hora:</label>
+                <select name="hora[]" required>
+                  ${Array.from({length: 13}, (_, h) => {
+                    const hora = `${(h+6).toString().padStart(2, '0')}:00`;
+                    return `<option value="${hora}">${hora}</option>`;
+                  }).join('')}
+                </select>
+              </div>
             </div>
           `;
-          contenedor.appendChild(div);
+          preview.appendChild(card);
         });
       });
-    });
-  </script>
+  });
+</script>
 
-  <script src="js/agendar.js"></script>
-  <script src="js/servicio_agenda_local.js"></script>
 </body>
 </html>
